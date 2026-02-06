@@ -10,7 +10,7 @@ enum spawn_type {COFFEE_BEAN, TEA, GERM}
 #func _ready() -> void:
 	#pass 
 
-# pass for now
+# not needed atm
 #func _process(delta: float) -> void:
 	#pass
 

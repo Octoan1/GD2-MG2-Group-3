@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://3l24jhapkoql"]
 
 [ext_resource type="Script" uid="uid://w5i6kryi1gj1" path="res://object_spawner/object_spawner.gd" id="1_rkups"]
-[ext_resource type="PackedScene" uid="uid://d0u46ocpqtcyc" path="res://object_spawner/coffee_bean.tscn" id="2_odcuk"]
+[ext_resource type="PackedScene" uid="uid://d0u46ocpqtcyc" path="res://object_spawner/coffee/coffee_bean.tscn" id="2_odcuk"]
 
 [node name="ObjectSpawner" type="Node2D" unique_id=123667683]
 script = ExtResource("1_rkups")
