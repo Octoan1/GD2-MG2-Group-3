@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dainh2ksg5jno"]
+
+[ext_resource type="Texture2D" uid="uid://b38elflf55eel" path="res://icon.svg" id="1_4jhar"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b18de"]
+radius = 62.801273
+
+[node name="Water" type="RigidBody2D" unique_id=1991736768]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1948324836]
+modulate = Color(0.28235295, 0.17254902, 1, 1)
+texture = ExtResource("1_4jhar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1327792020]
+shape = SubResource("CircleShape2D_b18de")
