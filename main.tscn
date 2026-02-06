@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://rl0y5cwvjkot"]
 
+[ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="1_ig7tw"]
+
 [node name="Main" type="Node2D" unique_id=1991473030]
+
+[node name="ObjectSpawner" parent="." unique_id=123667683 instance=ExtResource("1_ig7tw")]

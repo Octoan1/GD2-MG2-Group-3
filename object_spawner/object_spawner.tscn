@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://3l24jhapkoql"]
+
+[ext_resource type="Script" uid="uid://w5i6kryi1gj1" path="res://object_spawner/object_spawner.gd" id="1_rkups"]
+[ext_resource type="PackedScene" uid="uid://d0u46ocpqtcyc" path="res://object_spawner/coffee/coffee_bean.tscn" id="2_odcuk"]
+[ext_resource type="PackedScene" uid="uid://dainh2ksg5jno" path="res://object_spawner/water/water.tscn" id="3_8n6hu"]
+[ext_resource type="PackedScene" uid="uid://dvcb12w0ya81d" path="res://object_spawner/germ/germ.tscn" id="4_k8w3j"]
+
+[node name="ObjectSpawner" type="Node2D" unique_id=123667683]
+script = ExtResource("1_rkups")
+coffee_bean = ExtResource("2_odcuk")
+water = ExtResource("3_8n6hu")
+germ = ExtResource("4_k8w3j")
+
+[node name="ObjectContainer" type="Node" parent="." unique_id=1459219262]
