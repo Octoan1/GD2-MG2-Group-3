@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bfdj7se1k83q1"]
+
+[ext_resource type="Script" uid="uid://c1jctmcnvaf0h" path="res://cup.gd" id="1_ponjl"]
+[ext_resource type="Texture2D" uid="uid://b04rodsxtpo2l" path="res://cup.png" id="2_hxhe5"]
+
+[node name="cup" type="Node2D" unique_id=1604033659]
+position = Vector2(557, 362)
+script = ExtResource("1_ponjl")
+rotation_speed = 8.0
+push_amount = 2.0
+speed_percent = 50.0
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1211829156]
+position = Vector2(7, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1047603354]
+position = Vector2(0, -43)
+scale = Vector2(0.3160714, 0.3160714)
+texture = ExtResource("2_hxhe5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AnimatableBody2D" unique_id=733752176]
+polygon = PackedVector2Array(-34, -86, -23, 3, 22, 4, 36, -84, 29, -84, 15, -4, -14, -4, -26, -86)
