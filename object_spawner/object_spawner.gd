@@ -5,6 +5,7 @@ extends Node2D
 @export var germ: PackedScene
 
 @onready var object_container: Node = $ObjectContainer
+var objects = []
 
 enum spawn_type {WATER, COFFEE, GERM}
 
@@ -29,8 +30,10 @@ func _input(event: InputEvent) -> void:
 		if event.keycode == KEY_3:
 			curr_type = spawn_type.GERM
 			print("switched to germ")
-		else:
+		if event.keycode == KEY_R:
 			pass
+			
+			
 		
 	if event is InputEventMouseButton:
 		if event.pressed:
@@ -51,6 +54,8 @@ func spawn_object(type: spawn_type) -> void:
 			instance = germ.instantiate()
 	
 	instance.global_position = mouse_pos
+	instance.get_child(0).scale *= 0.5
+	instance.get_child(1).scale *= 0.5
 	object_container.add_child(instance)
 	
 	

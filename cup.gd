@@ -20,9 +20,9 @@ func _process(delta: float) -> void:
 	
 func rotate_no_velocity(delta: float):	
 	if(Input.is_action_pressed("Action")):
-		rotation += -rotation_speed * delta
-	else:
 		rotation += rotation_speed * delta
+	else:
+		rotation += -rotation_speed * delta
 
 
 func rotate_velocity(delta: float):

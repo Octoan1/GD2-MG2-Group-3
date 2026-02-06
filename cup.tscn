@@ -1,16 +1,15 @@
 [gd_scene format=3 uid="uid://bfdj7se1k83q1"]
 
-[ext_resource type="Script" uid="uid://c1jctmcnvaf0h" path="res://cup.gd" id="1_ponjl"]
+[ext_resource type="Script" path="res://cup.gd" id="1_ponjl"]
 [ext_resource type="Texture2D" uid="uid://b04rodsxtpo2l" path="res://cup.png" id="2_hxhe5"]
 
 [node name="cup" type="Node2D" unique_id=1604033659]
 position = Vector2(557, 362)
+scale = Vector2(4, 4)
 script = ExtResource("1_ponjl")
-rotation_speed = 8.0
-push_amount = 2.0
-speed_percent = 50.0
+rotation_speed = 0.1
 
-[node name="AnimatableBody2D" type="AnimatableBody2D" parent="." unique_id=1211829156]
+[node name="AnimatableBody2D" type="CharacterBody2D" parent="." unique_id=1028320870]
 position = Vector2(7, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D" unique_id=1047603354]

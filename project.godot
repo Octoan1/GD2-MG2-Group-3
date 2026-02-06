@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MG2 - Group 3"
-run/main_scene="uid://bfdj7se1k83q1"
+run/main_scene="uid://rl0y5cwvjkot"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

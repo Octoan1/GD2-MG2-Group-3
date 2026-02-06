@@ -1,7 +1,13 @@
 [gd_scene format=3 uid="uid://rl0y5cwvjkot"]
 
 [ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup.tscn" id="2_0xm2m"]
 
 [node name="Main" type="Node2D" unique_id=1991473030]
 
 [node name="ObjectSpawner" parent="." unique_id=123667683 instance=ExtResource("1_ig7tw")]
+
+[node name="cup" parent="." unique_id=1604033659 instance=ExtResource("2_0xm2m")]
+rotation_speed = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="cup" unique_id=270366145]
