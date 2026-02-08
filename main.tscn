@@ -2,12 +2,24 @@
 
 [ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://ctyu5gadbmowi" path="res://collection_cup.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node2D" unique_id=1991473030]
 
 [node name="ObjectSpawner" parent="." unique_id=123667683 instance=ExtResource("1_ig7tw")]
 
-[node name="cup" parent="." unique_id=1604033659 instance=ExtResource("2_0xm2m")]
-rotation_speed = 1.0
+[node name="Cup" parent="." unique_id=1604033659 instance=ExtResource("2_0xm2m")]
+scale = Vector2(1.5, 1.5)
+rotation_speed = 1.5
 
-[node name="Camera2D" type="Camera2D" parent="cup" unique_id=270366145]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=56953282]
+
+[node name="VictoryCup" parent="." unique_id=1882889429 instance=ExtResource("3_h2yge")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(163, 194)
+scale = Vector2(1.5, 1.5)
+
+[node name="TrashCup" parent="." unique_id=643008394 instance=ExtResource("3_h2yge")]
+modulate = Color(0.42529723, 0.6038802, 0.3720845, 1)
+position = Vector2(-158, 192)
+scale = Vector2(1.5, 1.5)

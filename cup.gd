@@ -15,38 +15,38 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	rotate_no_velocity(delta)
-	
-	
-func rotate_no_velocity(delta: float):	
-	if(Input.is_action_pressed("Action")):
-		rotation += rotation_speed * delta
+	if Input.is_action_pressed("Action"):
+		self.rotation += rotation_speed * delta * 1.1 
 	else:
-		rotation += -rotation_speed * delta
+		self.rotation += -rotation_speed * delta
+	
+# UNUSED
+#func rotate_no_velocity(delta: float):	
+	#if Input.is_action_pressed("Action"):
+		#self.rotation += rotation_speed * delta
+	#else:
+		#self.rotation += -rotation_speed * delta
 
-
-func rotate_velocity(delta: float):
-	if (prev_rotate == null):
-		prev_rotate = rotation
-	
-	if (velocity == null):
-		velocity = 0;
-	
-	if(Input.is_action_pressed("Action")):
-		velocity = -push_amount * speed_percent / 100
-		pass
-	
-	else:
-		rotation += delta * rotation_speed # * velocity * speed_percent / 100
-
-	velocity += delta * speed_percent / 100
-	
-	print(velocity)
-	
-	if(Input.is_action_pressed("Action")):
-		velocity = -push_amount * speed_percent / 100
-		pass
-	
-	pass
-	
-	pass
+# UNUSED
+#func rotate_velocity(delta: float):
+	#if (prev_rotate == null):
+		#prev_rotate = rotation
+	#
+	#if (velocity == null):
+		#velocity = 0;
+	#
+	#if(Input.is_action_pressed("Action")):
+		#velocity = -push_amount * speed_percent / 100
+		#print("2")
+		#pass
+	#
+	#else:
+		#rotation += delta * rotation_speed # * velocity * speed_percent / 100
+#
+	#velocity += delta * speed_percent / 100
+	#
+	#print(velocity)
+	#
+	#if Input.is_action_pressed("Action"):
+		#velocity = -push_amount * speed_percent / 100
+		#print("1")

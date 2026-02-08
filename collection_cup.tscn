@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://ctyu5gadbmowi"]
+
+[ext_resource type="Texture2D" uid="uid://b04rodsxtpo2l" path="res://cup.png" id="1_n6et3"]
+[ext_resource type="Script" uid="uid://cyl56d86e137p" path="res://collection_cup.gd" id="1_ofgyg"]
+
+[node name="CollectionCup" type="StaticBody2D" unique_id=1882889429]
+script = ExtResource("1_ofgyg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1139283360]
+scale = Vector2(0.3160714, 0.3160714)
+texture = ExtResource("1_n6et3")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=1417663124]
+polygon = PackedVector2Array(-37, -42, -22, 46, 21, 46, 37, -42, 27, -40, 15, 37, -16, 37, -26, -39)
+
+[node name="CupContentsDetection" type="Area2D" parent="." unique_id=1780360092]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CupContentsDetection" unique_id=1469876706]
+polygon = PackedVector2Array(-28, -29, 29, -29, 17, 40, -18, 40)
+
+[connection signal="body_entered" from="CupContentsDetection" to="." method="_on_cup_contents_detection_body_entered"]
