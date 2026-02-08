@@ -1,9 +1,12 @@
 extends Node2D
 
+signal remove_all_ingredients
+
 @export var coffee_bean: PackedScene
 @export var water: PackedScene
 @export var germ: PackedScene
 
+@onready var debug_label: Label = $"../DebugLabel"
 @onready var object_container: Node = $ObjectContainer
 var objects = []
 
@@ -11,18 +14,24 @@ enum spawn_type {WATER, COFFEE, GERM}
 
 var curr_type: spawn_type = spawn_type.WATER
 
+func _ready() -> void:
+	print("Spawn Type: ", curr_type)
+
 func _input(event: InputEvent) -> void:
 	# handle keyboard input
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_1:
 			curr_type = spawn_type.WATER
-			print("\nSwitched to water")
+			print("Switched to water")
+			debug_label.text = "Selected Ingredient: Water"
 		if event.keycode == KEY_2:
 			curr_type = spawn_type.COFFEE
-			print("\nSwitched to coffee")
+			print("Switched to coffee")
+			debug_label.text = "Selected Ingredient: Coffee"
 		if event.keycode == KEY_3:
 			curr_type = spawn_type.GERM
-			print("\nSwitched to germ")
+			print("Switched to germ")
+			debug_label.text = "Selected Ingredient: Germ"
 		if event.keycode == KEY_R:
 			print("\nRemoved ", objects.size(), " objects")
 			for obj in objects:
@@ -32,6 +41,11 @@ func _input(event: InputEvent) -> void:
 			i = 0
 			j = 0
 			k = 0
+			remove_all_ingredients.emit()
+		#if event.keycode == KEY_T:
+			#for obj in objects:
+				#print(obj)
+			
 			
 			
 	# handle mouse input
@@ -51,6 +65,7 @@ func spawn_object(type: spawn_type) -> void:
 		spawn_type.WATER:
 			instance = water.instantiate()
 			instance.name = "Water%d" %i
+			#instance.add_to_group("water")
 			i += 1
 		spawn_type.COFFEE:
 			instance = coffee_bean.instantiate()

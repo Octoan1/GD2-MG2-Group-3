@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://ctyu5gadbmowi" path="res://collection_cup.tscn" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://d1oss106vxvxm" path="res://Coffee.mp3" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://boh08eotpos5r" path="res://score.gd" id="5_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=1991473030]
 
@@ -14,12 +16,53 @@ rotation_speed = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=56953282]
 
-[node name="VictoryCup" parent="." unique_id=1882889429 instance=ExtResource("3_h2yge")]
+[node name="VictoryCup" parent="." unique_id=1882889429 node_paths=PackedStringArray("spawner") instance=ExtResource("3_h2yge")]
 modulate = Color(1, 1, 0, 1)
 position = Vector2(163, 194)
 scale = Vector2(1.5, 1.5)
+spawner = NodePath("../ObjectSpawner")
 
-[node name="TrashCup" parent="." unique_id=643008394 instance=ExtResource("3_h2yge")]
+[node name="TrashCup" parent="." unique_id=643008394 node_paths=PackedStringArray("spawner") instance=ExtResource("3_h2yge")]
 modulate = Color(0.42529723, 0.6038802, 0.3720845, 1)
 position = Vector2(-158, 192)
 scale = Vector2(1.5, 1.5)
+spawner = NodePath("../ObjectSpawner")
+base_recipe = 1
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="." unique_id=819760885]
+stream = ExtResource("4_1bvp3")
+
+[node name="Label" type="Label" parent="." unique_id=1290216403]
+offset_left = 132.0
+offset_top = 44.0
+offset_right = 203.0
+offset_bottom = 119.0
+text = "Order:
+- 1 water
+- 1 coffee"
+
+[node name="Label2" type="Label" parent="." unique_id=1147445821]
+offset_left = -189.0
+offset_top = 46.0
+offset_right = -131.0
+offset_bottom = 95.0
+text = "Trash:
+- germs"
+
+[node name="Score" type="Label" parent="." unique_id=313751055]
+offset_left = -238.0
+offset_top = -235.0
+offset_right = -177.0
+offset_bottom = -212.0
+text = "Score: 0"
+script = ExtResource("5_lquwl")
+
+[node name="DebugLabel" type="Label" parent="." unique_id=1612547457]
+offset_left = 37.0
+offset_top = -245.0
+offset_right = 196.0
+offset_bottom = -222.0
+text = "Selected Ingredient: Water"
+
+[connection signal="update_score" from="VictoryCup" to="Score" method="_on_victory_cup_update_score"]
+[connection signal="update_score" from="TrashCup" to="Score" method="_on_trash_cup_update_score"]

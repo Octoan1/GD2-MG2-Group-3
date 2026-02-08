@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cyl56d86e137p" path="res://collection_cup.gd" id="1_ofgyg"]
 
 [node name="CollectionCup" type="StaticBody2D" unique_id=1882889429]
+collision_mask = 0
 script = ExtResource("1_ofgyg")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1139283360]
@@ -14,6 +15,8 @@ texture = ExtResource("1_n6et3")
 polygon = PackedVector2Array(-37, -42, -22, 46, 21, 46, 37, -42, 27, -40, 15, 37, -16, 37, -26, -39)
 
 [node name="CupContentsDetection" type="Area2D" parent="." unique_id=1780360092]
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CupContentsDetection" unique_id=1469876706]
 polygon = PackedVector2Array(-28, -29, 29, -29, 17, 40, -18, 40)

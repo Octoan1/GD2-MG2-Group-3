@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b04rodsxtpo2l" path="res://cup.png" id="2_hxhe5"]
 
 [node name="Cup" type="CharacterBody2D" unique_id=1028320870]
+collision_mask = 0
 script = ExtResource("1_ponjl")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1047603354]

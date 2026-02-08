@@ -5,7 +5,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_yq3m0"]
 radius = 62.801273
 
-[node name="CoffeeBean" type="RigidBody2D" unique_id=1766887428]
+[node name="CoffeeBean" type="RigidBody2D" unique_id=1766887428 groups=["coffee"]]
+collision_layer = 2
+collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2067582569]
 modulate = Color(0.8005983, 0.46279746, 0.2336992, 1)
