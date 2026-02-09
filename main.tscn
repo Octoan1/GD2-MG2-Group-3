@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://ctyu5gadbmowi" path="res://collection_cup.tscn" id="3_h2yge"]
-[ext_resource type="AudioStream" uid="uid://d1oss106vxvxm" path="res://Coffee.mp3" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cya8y0qjtkqxn" path="res://audio/audio_player.tscn" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://boh08eotpos5r" path="res://score.gd" id="5_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=1991473030]
@@ -29,8 +29,7 @@ scale = Vector2(1.5, 1.5)
 spawner = NodePath("../ObjectSpawner")
 base_recipe = 1
 
-[node name="BGMusic" type="AudioStreamPlayer" parent="." unique_id=819760885]
-stream = ExtResource("4_1bvp3")
+[node name="AudioPlayer" parent="." unique_id=1316893435 instance=ExtResource("4_lquwl")]
 
 [node name="Label" type="Label" parent="." unique_id=1290216403]
 offset_left = 132.0
@@ -64,5 +63,7 @@ offset_right = 196.0
 offset_bottom = -222.0
 text = "Selected Ingredient: Water"
 
+[connection signal="update_score" from="VictoryCup" to="AudioPlayer" method="_on_update_score"]
 [connection signal="update_score" from="VictoryCup" to="Score" method="_on_victory_cup_update_score"]
+[connection signal="update_score" from="TrashCup" to="AudioPlayer" method="_on_update_score"]
 [connection signal="update_score" from="TrashCup" to="Score" method="_on_trash_cup_update_score"]
