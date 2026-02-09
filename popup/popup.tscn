@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dq5sjncsn4yn7"]
+
+[ext_resource type="Script" uid="uid://bj6yxwbarmn1d" path="res://popup/popup.gd" id="1_imfdp"]
+[ext_resource type="AudioStream" uid="uid://vd4y222uhvxq" path="res://popup/point.ogg" id="2_g86cu"]
+[ext_resource type="AudioStream" uid="uid://cwml1j02s3jrt" path="res://popup/lose.ogg" id="3_sywch"]
+
+[node name="Popup" type="Node2D" unique_id=314937224 node_paths=PackedStringArray("point", "lose")]
+script = ExtResource("1_imfdp")
+point = NodePath("PointSFX")
+lose = NodePath("LoseSFX")
+point_text = Array[String](["Nice Pour!", "Excellent!", "Well caffeinated!"])
+lose_text = Array[String](["Oof!", "Not good!", "Gross!"])
+
+[node name="PointSFX" type="AudioStreamPlayer2D" parent="." unique_id=210056701]
+stream = ExtResource("2_g86cu")
+max_polyphony = 4
+
+[node name="LoseSFX" type="AudioStreamPlayer2D" parent="." unique_id=653655506]
+stream = ExtResource("3_sywch")
+max_polyphony = 4

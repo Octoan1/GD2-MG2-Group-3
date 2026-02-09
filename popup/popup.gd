@@ -1,0 +1,56 @@
+extends Node2D
+
+@export var point: AudioStreamPlayer2D
+@export var lose: AudioStreamPlayer2D
+@export var point_text: Array[String]
+@export var lose_text: Array[String]
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.pressed:
+			_on_update_score(randi_range(0, 1))
+
+func _on_update_score(amount: int) -> void:
+	print("Amount= ", amount)
+	var spawn_pos = get_local_mouse_position()
+	
+	if amount > 0:
+		var rand = randi_range(0, point_text.size() - 1)
+		var text = point_text[rand]
+		
+		pulse_label(Color.GREEN, text, spawn_pos)
+		
+		point.pitch_scale = randf_range(0.9, 1.1)
+		point.play()
+	else:
+		var rand = randi_range(0, lose_text.size() - 1)
+		var text = lose_text[rand]
+		
+		pulse_label(Color.RED, text, spawn_pos)
+		
+		lose.pitch_scale = randf_range(0.9, 1.1)
+		lose.play()
+
+func pulse_label(color: Color, text: String, spawn_pos: Vector2):
+	# Create label
+	var label = Label.new()
+	add_child(label)
+	
+	# Set
+	label.add_theme_color_override("font_color", color)
+	label.text = text
+	label.reset_size()
+	label.scale = Vector2(2, 2)
+	var half_size = label.size / 2
+	label.pivot_offset = half_size
+	var rand_rotate = randf_range(-5, 5)
+	label.rotation_degrees = rand_rotate
+	label.position = spawn_pos - half_size
+	
+	# Start tweening
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(label, "scale", Vector2(1, 1), 0.5)
+	tween.parallel().tween_property(label, "rotation_degrees", rand_rotate * -2, 0.5)
+	tween.parallel().tween_property(label, "modulate:a", 0, 0.5)
+	tween.finished.connect(label.queue_free)
