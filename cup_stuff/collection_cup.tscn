@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctyu5gadbmowi"]
 
-[ext_resource type="Texture2D" uid="uid://b04rodsxtpo2l" path="res://cup.png" id="1_n6et3"]
-[ext_resource type="Script" uid="uid://cyl56d86e137p" path="res://collection_cup.gd" id="1_ofgyg"]
+[ext_resource type="Texture2D" uid="uid://b04rodsxtpo2l" path="res://cup_stuff/cup.png" id="1_n6et3"]
+[ext_resource type="Script" uid="uid://cyl56d86e137p" path="res://cup_stuff/collection_cup.gd" id="1_ofgyg"]
 
 [node name="CollectionCup" type="StaticBody2D" unique_id=1882889429]
 collision_mask = 0

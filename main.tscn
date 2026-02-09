@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://rl0y5cwvjkot"]
 
 [ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://ctyu5gadbmowi" path="res://collection_cup.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup_stuff/cup.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://dq5sjncsn4yn7" path="res://popup/popup.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://dt1rfxwv0qi3t" path="res://cup_stuff/trash_can.tscn" id="4_5vw27"]
 [ext_resource type="PackedScene" uid="uid://cya8y0qjtkqxn" path="res://audio/audio_player.tscn" id="4_lquwl"]
-[ext_resource type="Script" uid="uid://boh08eotpos5r" path="res://score.gd" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cswvmjnmknhck" path="res://cup_stuff/victory_cup.tscn" id="5_kek77"]
+[ext_resource type="Script" uid="uid://boh08eotpos5r" path="res://cup_stuff/score.gd" id="5_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=1991473030]
 
@@ -16,18 +18,12 @@ rotation_speed = 1.5
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=56953282]
 
-[node name="VictoryCup" parent="." unique_id=1882889429 node_paths=PackedStringArray("spawner") instance=ExtResource("3_h2yge")]
-modulate = Color(1, 1, 0, 1)
-position = Vector2(163, 194)
-scale = Vector2(1.5, 1.5)
-spawner = NodePath("../ObjectSpawner")
+[node name="TrashCan" parent="." unique_id=1385732805 instance=ExtResource("4_5vw27")]
+position = Vector2(-138, 180)
+scale = Vector2(1.4799978, 1.4799978)
 
-[node name="TrashCup" parent="." unique_id=643008394 node_paths=PackedStringArray("spawner") instance=ExtResource("3_h2yge")]
-modulate = Color(0.42529723, 0.6038802, 0.3720845, 1)
-position = Vector2(-158, 192)
-scale = Vector2(1.5, 1.5)
-spawner = NodePath("../ObjectSpawner")
-base_recipe = 1
+[node name="VictoryCup" parent="." unique_id=1356587524 instance=ExtResource("5_kek77")]
+position = Vector2(150, 232)
 
 [node name="AudioPlayer" parent="." unique_id=1316893435 instance=ExtResource("4_lquwl")]
 
@@ -63,7 +59,11 @@ offset_right = 196.0
 offset_bottom = -222.0
 text = "Selected Ingredient: Water"
 
+[node name="Popup" parent="." unique_id=314937224 instance=ExtResource("2_7mycd")]
+
+[connection signal="collect" from="TrashCan" to="Popup" method="_on_update_score"]
+[connection signal="update_score" from="TrashCan" to="AudioPlayer" method="_on_update_score"]
+[connection signal="update_score" from="TrashCan" to="Score" method="_on_trash_cup_update_score"]
+[connection signal="collect" from="VictoryCup" to="Popup" method="_on_update_score"]
 [connection signal="update_score" from="VictoryCup" to="AudioPlayer" method="_on_update_score"]
 [connection signal="update_score" from="VictoryCup" to="Score" method="_on_victory_cup_update_score"]
-[connection signal="update_score" from="TrashCup" to="AudioPlayer" method="_on_update_score"]
-[connection signal="update_score" from="TrashCup" to="Score" method="_on_trash_cup_update_score"]

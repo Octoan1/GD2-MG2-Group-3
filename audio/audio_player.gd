@@ -28,7 +28,6 @@ func update_track():
 # When score gets above amount change intensity
 func _on_update_score(amount: int) -> void:
 	score += amount
-	print("Intensity = ", intensity, " Amount = ", amount)
 	
 	if (intensity == not true and score > score_threshold):
 		intensity = true

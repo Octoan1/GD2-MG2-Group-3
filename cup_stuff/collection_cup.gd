@@ -1,6 +1,7 @@
 extends StaticBody2D
 
 signal update_score(amount: int)
+signal collect(amount: int, destroy_location: Vector2)
 
 @onready var cup_contents_detection: Area2D = $CupContentsDetection
 
@@ -32,35 +33,42 @@ func check_recipe(recipe: Recipe):
 		Recipe.COFFEE:
 			var coffee = null
 			var water = null
-			for ingredient: RigidBody2D in contents:
+			for ingredient: RigidBody2D in cup_contents_detection.get_overlapping_bodies():
 				if ingredient.is_in_group("coffee") and coffee == null:
 					#ingredient.modulate = Color.GOLD
 					coffee = ingredient
 				elif ingredient.is_in_group("water") and water == null:
 					#ingredient.modulate = Color.GOLD
 					water = ingredient
+				elif ingredient.is_in_group("germ"):
+					ingredient.queue_free()
+					update_score.emit(-1)
+					collect.emit(-3, ingredient.position)
 				if coffee and water:
-					contents.erase(coffee)
 					coffee.queue_free()
 					coffee = null
 					
-					contents.erase(water)
 					water.queue_free()
 					water = null
 					
 					update_score.emit(3)
+					collect.emit(3, ingredient.position)
+					
 				else: 
 					if ingredient: 
 						ingredient.apply_impulse(Vector2(0,0))
 					
 		Recipe.TRASH:
-			for ingredient in contents:
+			for ingredient in cup_contents_detection.get_overlapping_bodies():
 				if ingredient.is_in_group("germ"):
 					#ingredient.modulate = Color.RED
-					contents.erase(ingredient)
 					ingredient.queue_free()
-					
 					update_score.emit(1)
+					collect.emit(1, ingredient.position)
+				else:
+					ingredient.queue_free()
+					update_score.emit(-1)
+					collect.emit(-1, ingredient.position)
 
 		
 func _on_remove_all_ingredients() -> void:

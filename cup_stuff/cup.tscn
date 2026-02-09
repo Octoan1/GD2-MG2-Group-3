@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bfdj7se1k83q1"]
+
+[ext_resource type="Script" uid="uid://c1jctmcnvaf0h" path="res://cup_stuff/cup.gd" id="1_ponjl"]
+[ext_resource type="Texture2D" uid="uid://ciffsbabocqo7" path="res://Sprites/Untitled 4.png" id="2_hxhe5"]
+
+[node name="Cup" type="CharacterBody2D" unique_id=1028320870]
+collision_mask = 0
+script = ExtResource("1_ponjl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1047603354]
+position = Vector2(0, -13)
+scale = Vector2(0.06333334, 0.06333334)
+texture = ExtResource("2_hxhe5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=733752176]
+polygon = PackedVector2Array(-38, -42, -23, 48, 23, 48, 38, -42, 33, -41, 19, 44, -19, 44, -33, -41)

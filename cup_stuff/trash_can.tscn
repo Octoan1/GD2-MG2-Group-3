@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dt1rfxwv0qi3t"]
+
+[ext_resource type="PackedScene" uid="uid://ctyu5gadbmowi" path="res://cup_stuff/collection_cup.tscn" id="1_jxbv1"]
+[ext_resource type="Texture2D" uid="uid://cnfahrqxyg8yx" path="res://Sprites/Untitled 6.png" id="2_k8nia"]
+
+[node name="TrashCan" unique_id=1882889429 instance=ExtResource("1_jxbv1")]
+scale = Vector2(1.8799983, 1.8799983)
+base_recipe = 1
+
+[node name="Sprite2D" parent="." index="0" unique_id=1139283360]
+position = Vector2(0, 8)
+scale = Vector2(0.04714781, 0.04714781)
+texture = ExtResource("2_k8nia")
+
+[node name="CollisionPolygon2D" parent="." index="1" unique_id=1417663124]
+polygon = PackedVector2Array(-43, -47, -31, 53, 31, 53, 43, -48, 35, -41, 27, 45, -27, 45, -35, -40)
+
+[node name="CollisionPolygon2D" parent="CupContentsDetection" parent_id_path=PackedInt32Array(1780360092) index="0" unique_id=1469876706]
+polygon = PackedVector2Array(-36, -36, 37, -36, 29, 47, -28, 47)

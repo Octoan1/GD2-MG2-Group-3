@@ -5,15 +5,14 @@ extends Node2D
 @export var point_text: Array[String]
 @export var lose_text: Array[String]
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.pressed:
-			_on_update_score(randi_range(0, 1))
+# Unused
+#func _input(event: InputEvent) -> void:
+#	if event is InputEventMouseButton:
+#		if event.pressed:
+#			_on_update_score(randi_range(0, 1), get_local_mouse_position())
 
-func _on_update_score(amount: int) -> void:
-	print("Amount= ", amount)
-	var spawn_pos = get_local_mouse_position()
-	
+func _on_update_score(amount: int, spawn_pos: Vector2) -> void:
+
 	if amount > 0:
 		var rand = randi_range(0, point_text.size() - 1)
 		var text = point_text[rand]
@@ -46,6 +45,7 @@ func pulse_label(color: Color, text: String, spawn_pos: Vector2):
 	var rand_rotate = randf_range(-5, 5)
 	label.rotation_degrees = rand_rotate
 	label.position = spawn_pos - half_size
+	label.z_index = 100
 	
 	# Start tweening
 	var tween = create_tween()

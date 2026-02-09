@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dvcb12w0ya81d"]
 
-[ext_resource type="Texture2D" uid="uid://b38elflf55eel" path="res://icon.svg" id="1_pc2wa"]
+[ext_resource type="Texture2D" uid="uid://duorlbu4is5dt" path="res://Sprites/Untitled 3.png" id="1_pc2wa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b18de"]
 radius = 62.801273
@@ -10,8 +10,10 @@ collision_layer = 2
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1948324836]
-modulate = Color(0.09803922, 1, 0.1764706, 1)
+position = Vector2(0, -3.8146973e-06)
+scale = Vector2(0.15944445, 0.15944448)
 texture = ExtResource("1_pc2wa")
+offset = Vector2(-12.5435505, -344.94763)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1327792020]
 shape = SubResource("CircleShape2D_b18de")

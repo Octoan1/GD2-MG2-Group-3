@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://d0u46ocpqtcyc"]
 
-[ext_resource type="Texture2D" uid="uid://b38elflf55eel" path="res://icon.svg" id="1_2yfi8"]
+[ext_resource type="Texture2D" uid="uid://baixr8s72xrug" path="res://Sprites/Untitled2.png" id="1_r5rcm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yq3m0"]
-radius = 62.801273
+radius = 64.629715
 
 [node name="CoffeeBean" type="RigidBody2D" unique_id=1766887428 groups=["coffee"]]
 collision_layer = 2
 collision_mask = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2067582569]
-modulate = Color(0.8005983, 0.46279746, 0.2336992, 1)
-texture = ExtResource("1_2yfi8")
+scale = Vector2(0.196, 0.2)
+texture = ExtResource("1_r5rcm")
+offset = Vector2(204.08168, -380)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=667819571]
 shape = SubResource("CircleShape2D_yq3m0")
