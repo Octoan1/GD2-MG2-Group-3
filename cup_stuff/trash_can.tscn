@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dt1rfxwv0qi3t"]
 
 [ext_resource type="PackedScene" uid="uid://ctyu5gadbmowi" path="res://cup_stuff/collection_cup.tscn" id="1_jxbv1"]
-[ext_resource type="Texture2D" uid="uid://cnfahrqxyg8yx" path="res://Sprites/Untitled 6.png" id="2_k8nia"]
+[ext_resource type="Texture2D" uid="uid://cnfahrqxyg8yx" path="res://sprites/Untitled 6.png" id="2_k8nia"]
 
 [node name="TrashCan" unique_id=1882889429 instance=ExtResource("1_jxbv1")]
 scale = Vector2(1.8799983, 1.8799983)

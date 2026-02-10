@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://t1og2mqy37ov"]
+
+[ext_resource type="Shader" uid="uid://f6gci21xbrp6" path="res://shader/coffee_shader.gdshader" id="1_1jr7r"]
+[ext_resource type="Texture2D" uid="uid://b38elflf55eel" path="res://icon.svg" id="2_ylm5p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ancud"]
+shader = ExtResource("1_1jr7r")
+shader_parameter/colorA = Color(0.2, 0.1, 0.05, 1)
+shader_parameter/colorB = Color(0.5, 0.3, 0.15, 1)
+shader_parameter/colorC = Color(0.85, 0.75, 0.6, 1)
+shader_parameter/discomode = false
+shader_parameter/speed = 0.32800001232012
+
+[node name="Coffee" type="Sprite2D" unique_id=1285840319]
+material = SubResource("ShaderMaterial_ancud")
+texture = ExtResource("2_ylm5p")

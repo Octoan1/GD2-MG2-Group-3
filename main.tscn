@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://rl0y5cwvjkot"]
 
+[ext_resource type="PackedScene" uid="uid://t1og2mqy37ov" path="res://shader/coffee.tscn" id="1_5vw27"]
 [ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup_stuff/cup.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://dq5sjncsn4yn7" path="res://popup/popup.tscn" id="2_7mycd"]
@@ -9,6 +10,10 @@
 [ext_resource type="Script" uid="uid://boh08eotpos5r" path="res://cup_stuff/score.gd" id="5_lquwl"]
 
 [node name="Main" type="Node2D" unique_id=1991473030]
+
+[node name="Coffee" parent="." unique_id=1285840319 instance=ExtResource("1_5vw27")]
+position = Vector2(-10.999878, 5.999878)
+scale = Vector2(21.210938, 21.210938)
 
 [node name="ObjectSpawner" parent="." unique_id=123667683 instance=ExtResource("1_ig7tw")]
 

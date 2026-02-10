@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cswvmjnmknhck"]
 
 [ext_resource type="PackedScene" uid="uid://ctyu5gadbmowi" path="res://cup_stuff/collection_cup.tscn" id="1_svmmk"]
-[ext_resource type="Texture2D" uid="uid://bm1ttafj72cgu" path="res://Sprites/Untitled 8.png" id="2_xouwm"]
+[ext_resource type="Texture2D" uid="uid://bm1ttafj72cgu" path="res://sprites/Untitled 8.png" id="2_xouwm"]
 
 [node name="VictoryCup" unique_id=1882889429 instance=ExtResource("1_svmmk")]
 scale = Vector2(1.9200001, 1.9200001)

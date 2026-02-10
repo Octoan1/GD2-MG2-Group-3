@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bfdj7se1k83q1"]
 
 [ext_resource type="Script" uid="uid://c1jctmcnvaf0h" path="res://cup_stuff/cup.gd" id="1_ponjl"]
-[ext_resource type="Texture2D" uid="uid://ciffsbabocqo7" path="res://Sprites/Untitled 4.png" id="2_hxhe5"]
+[ext_resource type="Texture2D" uid="uid://ciffsbabocqo7" path="res://sprites/Untitled 4.png" id="2_hxhe5"]
 
 [node name="Cup" type="CharacterBody2D" unique_id=1028320870]
 collision_mask = 0
