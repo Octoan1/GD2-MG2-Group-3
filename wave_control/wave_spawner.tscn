@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c8ucsaoy7oe6e"]
+
+[ext_resource type="Script" uid="uid://bl83stjneqpq6" path="res://wave_control/wave_spawner.gd" id="1_vmr0h"]
+[ext_resource type="Script" uid="uid://ch7m5h5rnpiad" path="res://wave_control/wave_resource.gd" id="2_d7leg"]
+[ext_resource type="Resource" uid="uid://c6vvi7gustbex" path="res://wave_control/waves/wave_simple.tres" id="3_k2ic5"]
+
+[node name="WaveSpawner" type="Node2D" unique_id=248348919]
+script = ExtResource("1_vmr0h")
+waves = Array[ExtResource("2_d7leg")]([ExtResource("3_k2ic5"), null])

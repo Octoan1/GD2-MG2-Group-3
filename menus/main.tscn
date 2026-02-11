@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://rl0y5cwvjkot"]
+
+[ext_resource type="PackedScene" uid="uid://t1og2mqy37ov" path="res://shader/coffee.tscn" id="1_gb18u"]
+[ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="2_k8qw4"]
+[ext_resource type="PackedScene" uid="uid://c8ucsaoy7oe6e" path="res://wave_control/wave_spawner.tscn" id="3_787nb"]
+[ext_resource type="Script" uid="uid://ch7m5h5rnpiad" path="res://wave_control/wave_resource.gd" id="4_i8mlb"]
+[ext_resource type="Resource" uid="uid://c6vvi7gustbex" path="res://wave_control/waves/wave_simple.tres" id="5_h3p7w"]
+[ext_resource type="Resource" uid="uid://bq74jobe23ki2" path="res://wave_control/waves/wave_germs.tres" id="6_77eub"]
+[ext_resource type="Resource" uid="uid://cyos6s2pj6u3j" path="res://wave_control/waves/wave_fast.tres" id="7_hnx4n"]
+[ext_resource type="Resource" uid="uid://g40dg5shwnvs" path="res://wave_control/waves/wave_hard.tres" id="8_ciosg"]
+[ext_resource type="Resource" uid="uid://demqfy2ojffif" path="res://wave_control/waves/wave_mixed.tres" id="9_sxub3"]
+[ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup_stuff/cup.tscn" id="10_36uvt"]
+[ext_resource type="PackedScene" uid="uid://dt1rfxwv0qi3t" path="res://cup_stuff/trash_can.tscn" id="11_q0pb7"]
+[ext_resource type="PackedScene" uid="uid://cswvmjnmknhck" path="res://cup_stuff/victory_cup.tscn" id="12_u7aby"]
+[ext_resource type="PackedScene" uid="uid://cya8y0qjtkqxn" path="res://audio/music_player.tscn" id="13_b6cyy"]
+[ext_resource type="Script" uid="uid://boh08eotpos5r" path="res://cup_stuff/score.gd" id="14_fb1eh"]
+[ext_resource type="PackedScene" uid="uid://dq5sjncsn4yn7" path="res://popup/popup.tscn" id="15_6gsuq"]
+
+[node name="Main" type="Node2D" unique_id=1991473030]
+
+[node name="Coffee" parent="." unique_id=1285840319 instance=ExtResource("1_gb18u")]
+position = Vector2(-10.999878, 5.999878)
+scale = Vector2(21.210938, 21.210938)
+
+[node name="ObjectSpawner" parent="." unique_id=123667683 instance=ExtResource("2_k8qw4")]
+
+[node name="WaveSpawner" parent="." unique_id=248348919 node_paths=PackedStringArray("object_spawner") instance=ExtResource("3_787nb")]
+start_delay = 2.0
+spawn_pos = Vector2(0, -250)
+object_spawner = NodePath("../ObjectSpawner")
+waves = Array[ExtResource("4_i8mlb")]([ExtResource("5_h3p7w"), ExtResource("5_h3p7w"), ExtResource("6_77eub"), ExtResource("5_h3p7w"), ExtResource("7_hnx4n"), ExtResource("8_ciosg"), ExtResource("7_hnx4n"), ExtResource("9_sxub3"), ExtResource("5_h3p7w")])
+
+[node name="Cup" parent="." unique_id=1604033659 instance=ExtResource("10_36uvt")]
+scale = Vector2(1.5, 1.5)
+rotation_speed = 1.5
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=56953282]
+
+[node name="TrashCan" parent="." unique_id=1385732805 instance=ExtResource("11_q0pb7")]
+position = Vector2(-138, 180)
+scale = Vector2(1.4799978, 1.4799978)
+
+[node name="VictoryCup" parent="." unique_id=1356587524 instance=ExtResource("12_u7aby")]
+position = Vector2(150, 232)
+
+[node name="MusicPlayer" parent="." unique_id=1316893435 instance=ExtResource("13_b6cyy")]
+
+[node name="Label" type="Label" parent="." unique_id=1290216403]
+offset_left = 132.0
+offset_top = 44.0
+offset_right = 203.0
+offset_bottom = 119.0
+text = "Order:
+- 1 water
+- 1 coffee"
+
+[node name="Label2" type="Label" parent="." unique_id=1147445821]
+offset_left = -189.0
+offset_top = 46.0
+offset_right = -131.0
+offset_bottom = 95.0
+text = "Trash:
+- germs"
+
+[node name="Score" type="Label" parent="." unique_id=313751055]
+offset_left = -238.0
+offset_top = -235.0
+offset_right = -177.0
+offset_bottom = -212.0
+text = "Score: 0
+Collect 50 to win!"
+script = ExtResource("14_fb1eh")
+
+[node name="DebugLabel" type="Label" parent="." unique_id=1612547457]
+offset_left = 37.0
+offset_top = -245.0
+offset_right = 196.0
+offset_bottom = -222.0
+text = "Selected Ingredient: Water"
+
+[node name="Popup" parent="." unique_id=314937224 instance=ExtResource("15_6gsuq")]
+
+[connection signal="wave_end" from="WaveSpawner" to="Popup" method="_on_wave_end"]
+[connection signal="wave_start" from="WaveSpawner" to="Popup" method="_on_wave_start"]
+[connection signal="waves_complete" from="WaveSpawner" to="Score" method="_on_wave_spawner_waves_complete"]
+[connection signal="score_changed" from="TrashCan" to="Score" method="_update_score"]
+[connection signal="score_changed" from="VictoryCup" to="Score" method="_update_score"]
+[connection signal="score_changed" from="Score" to="MusicPlayer" method="_on_update_score"]
+[connection signal="score_changed" from="Score" to="Popup" method="_on_update_score"]

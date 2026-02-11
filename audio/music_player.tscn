@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cya8y0qjtkqxn"]
+
+[ext_resource type="Script" uid="uid://cpkk8ilmojw4t" path="res://audio/music_player.gd" id="1_yeytq"]
+[ext_resource type="AudioStream" uid="uid://ddiy1m17spke6" path="res://audio/coffee.ogg" id="2_s25p2"]
+[ext_resource type="AudioStream" uid="uid://excgwl0ja5k6" path="res://audio/with_caffeine.ogg" id="3_jxbt4"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" unique_id=1316893435]
+volume_db = -5.0
+autoplay = true
+script = ExtResource("1_yeytq")
+default_track = ExtResource("2_s25p2")
+intense_track = ExtResource("3_jxbt4")
+score_threshold = 25.0

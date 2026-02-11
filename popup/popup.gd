@@ -2,6 +2,8 @@ extends Node2D
 
 @export var point: AudioStreamPlayer2D
 @export var lose: AudioStreamPlayer2D
+@export var next_wave: AudioStreamPlayer2D
+@export var wave_start: AudioStreamPlayer2D
 @export var point_text: Array[String]
 @export var lose_text: Array[String]
 
@@ -11,7 +13,7 @@ extends Node2D
 #		if event.pressed:
 #			_on_update_score(randi_range(0, 1), get_local_mouse_position())
 
-func _on_update_score(amount: int, spawn_pos: Vector2) -> void:
+func _on_update_score(amount: int, spawn_pos: Vector2, _0) -> void:
 
 	if amount > 0:
 		var rand = randi_range(0, point_text.size() - 1)
@@ -30,7 +32,7 @@ func _on_update_score(amount: int, spawn_pos: Vector2) -> void:
 		lose.pitch_scale = randf_range(0.9, 1.1)
 		lose.play()
 
-func pulse_label(color: Color, text: String, spawn_pos: Vector2):
+func pulse_label(color: Color, text: String, spawn_pos: Vector2, duration: float = 0.5):
 	# Create label
 	var label = Label.new()
 	add_child(label)
@@ -50,7 +52,18 @@ func pulse_label(color: Color, text: String, spawn_pos: Vector2):
 	# Start tweening
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_OUT)
-	tween.parallel().tween_property(label, "scale", Vector2(1, 1), 0.5)
-	tween.parallel().tween_property(label, "rotation_degrees", rand_rotate * -2, 0.5)
-	tween.parallel().tween_property(label, "modulate:a", 0, 0.5)
+	tween.parallel().tween_property(label, "scale", Vector2(1, 1), duration)
+	tween.parallel().tween_property(label, "rotation_degrees", rand_rotate * -2, duration)
+	tween.parallel().tween_property(label, "modulate:a", 0, duration)
 	tween.finished.connect(label.queue_free)
+
+
+
+func _on_wave_end(wave_end_delay: float) -> void:
+	next_wave.play()
+	pulse_label(Color.WHITE, "New wave in %d seconds" % wave_end_delay, Vector2(0, -150), wave_end_delay)
+
+
+func _on_wave_start(wave_index: int) -> void:
+	wave_start.play()
+	pulse_label(Color.WHITE, "Wave %d" % (wave_index + 1), Vector2(0, -150), 2)

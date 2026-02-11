@@ -2,19 +2,35 @@
 
 [ext_resource type="Script" uid="uid://bj6yxwbarmn1d" path="res://popup/popup.gd" id="1_imfdp"]
 [ext_resource type="AudioStream" uid="uid://vd4y222uhvxq" path="res://popup/point.ogg" id="2_g86cu"]
+[ext_resource type="AudioStream" uid="uid://bjokudl27nfoi" path="res://popup/next_wave.ogg" id="3_fjuvd"]
 [ext_resource type="AudioStream" uid="uid://cwml1j02s3jrt" path="res://popup/lose.ogg" id="3_sywch"]
+[ext_resource type="AudioStream" uid="uid://6vft8vs5lxgb" path="res://popup/wave_start.ogg" id="4_6flqp"]
 
-[node name="Popup" type="Node2D" unique_id=314937224 node_paths=PackedStringArray("point", "lose")]
+[node name="Popup" type="Node2D" unique_id=314937224 node_paths=PackedStringArray("point", "lose", "next_wave", "wave_start")]
 script = ExtResource("1_imfdp")
 point = NodePath("PointSFX")
 lose = NodePath("LoseSFX")
+next_wave = NodePath("WaveSFX")
+wave_start = NodePath("WaveStartSFX")
 point_text = Array[String](["Nice Pour!", "Excellent!", "Well caffeinated!"])
 lose_text = Array[String](["Oof!", "Not good!", "Gross!"])
 
 [node name="PointSFX" type="AudioStreamPlayer2D" parent="." unique_id=210056701]
 stream = ExtResource("2_g86cu")
+volume_db = 5.0
 max_polyphony = 4
 
 [node name="LoseSFX" type="AudioStreamPlayer2D" parent="." unique_id=653655506]
 stream = ExtResource("3_sywch")
+volume_db = 5.0
+max_polyphony = 4
+
+[node name="WaveStartSFX" type="AudioStreamPlayer2D" parent="." unique_id=1232448107]
+stream = ExtResource("4_6flqp")
+volume_db = 5.0
+max_polyphony = 4
+
+[node name="WaveSFX" type="AudioStreamPlayer2D" parent="." unique_id=2033354906]
+stream = ExtResource("3_fjuvd")
+volume_db = 5.0
 max_polyphony = 4

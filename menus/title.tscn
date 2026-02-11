@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://d3runbqkrsy5w"]
+
+[ext_resource type="Script" uid="uid://b3fojhayo0pn0" path="res://menus/scene_change.gd" id="1_y7k74"]
+[ext_resource type="PackedScene" uid="uid://t1og2mqy37ov" path="res://shader/coffee.tscn" id="2_oyqm6"]
+
+[node name="Title" type="Node2D" unique_id=1465934988]
+script = ExtResource("1_y7k74")
+scene_change = "main"
+
+[node name="Coffee" parent="." unique_id=1285840319 instance=ExtResource("2_oyqm6")]
+position = Vector2(-87.99988, -5.000122)
+scale = Vector2(21.210938, 21.210938)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1177359359]
+
+[node name="Label" type="Label" parent="." unique_id=1697088772]
+offset_left = -77.0
+offset_top = -11.0
+offset_right = 83.0
+offset_bottom = 12.0
+pivot_offset = Vector2(77, 11)
+text = "Press Space to start"

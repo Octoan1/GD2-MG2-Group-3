@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dmou66ibmawfh"]
+
+[ext_resource type="Script" uid="uid://b3fojhayo0pn0" path="res://menus/scene_change.gd" id="1_n735c"]
+[ext_resource type="PackedScene" uid="uid://t1og2mqy37ov" path="res://shader/coffee.tscn" id="2_egc6y"]
+[ext_resource type="Script" uid="uid://r0ukb1834ep1" path="res://menus/score_label.gd" id="3_1pknx"]
+
+[node name="End" type="Node2D" unique_id=804685771]
+script = ExtResource("1_n735c")
+scene_change = "title"
+delay_click = 1.0
+
+[node name="Coffee" parent="." unique_id=1285840319 instance=ExtResource("2_egc6y")]
+position = Vector2(-136.99988, -17.000122)
+scale = Vector2(21.210938, 21.210938)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1453862032]
+
+[node name="Label" type="Label" parent="." unique_id=1524434793]
+offset_left = -178.0
+offset_top = -24.0
+offset_right = 179.0
+offset_bottom = -1.0
+pivot_offset = Vector2(179, 24)
+text = "You are the champion coffee maker!
+Score 50 / 50"
+horizontal_alignment = 1
+script = ExtResource("3_1pknx")
+
+[node name="Space" type="Label" parent="." unique_id=988145654]
+offset_left = -177.0
+offset_top = 28.0
+offset_right = 180.0
+offset_bottom = 51.0
+pivot_offset = Vector2(179, 24)
+text = "Press space to return"
+horizontal_alignment = 1

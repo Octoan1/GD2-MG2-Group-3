@@ -1,35 +1,40 @@
 extends Node2D
+class_name ObjectSpawner
 
 signal remove_all_ingredients
 
 @export var coffee_bean: PackedScene
 @export var water: PackedScene
 @export var germ: PackedScene
+@export var debug_mode: bool
 
 @onready var debug_label: Label = $"../DebugLabel"
 @onready var object_container: Node = $ObjectContainer
 var objects = []
 
-enum spawn_type {WATER, COFFEE, GERM}
-
-var curr_type: spawn_type = spawn_type.WATER
+var curr_type: Ingredient.Type = Ingredient.Type.WATER
 
 func _ready() -> void:
-	print("Spawn Type: ", curr_type)
+	debug_label.visible = debug_mode
 
+func _process(_delta: float) -> void:
+	debug_label.visible = debug_mode
+	
 func _input(event: InputEvent) -> void:
+	if not debug_mode:
+		return
 	# handle keyboard input
 	if event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_1:
-			curr_type = spawn_type.WATER
+			curr_type = Ingredient.Type.WATER
 			print("Switched to water")
 			debug_label.text = "Selected Ingredient: Water"
 		if event.keycode == KEY_2:
-			curr_type = spawn_type.COFFEE
+			curr_type = Ingredient.Type.COFFEE_BEAN
 			print("Switched to coffee")
 			debug_label.text = "Selected Ingredient: Coffee"
 		if event.keycode == KEY_3:
-			curr_type = spawn_type.GERM
+			curr_type = Ingredient.Type.GERM
 			print("Switched to germ")
 			debug_label.text = "Selected Ingredient: Germ"
 		if event.keycode == KEY_R:
@@ -51,38 +56,32 @@ func _input(event: InputEvent) -> void:
 	# handle mouse input
 	if event is InputEventMouseButton:
 		if event.pressed:
-			spawn_object(curr_type)
+			spawn_object(curr_type, get_global_mouse_position())
 			
 var i := 0
 var j := 0
 var k := 0
-func spawn_object(type: spawn_type) -> void: 
-	# just spawn where mouse clicks for now
-	var mouse_pos = get_global_mouse_position()
+func spawn_object(type: Ingredient.Type, spawn_position: Vector2) -> void: 
 	
 	var instance: Node2D
 	match type:
-		spawn_type.WATER:
+		Ingredient.Type.WATER:
 			instance = water.instantiate()
 			instance.name = "Water%d" %i
 			#instance.add_to_group("water")
 			i += 1
-		spawn_type.COFFEE:
+		Ingredient.Type.COFFEE_BEAN:
 			instance = coffee_bean.instantiate()
 			instance.name = "Coffee%d" %j
 			j += 1
-		spawn_type.GERM:
+		Ingredient.Type.GERM:
 			instance = germ.instantiate()
 			instance.name = "Germ%d" %k
 			k += 1
 	
-	instance.global_position = mouse_pos
+	instance.global_position = spawn_position
 	instance.get_child(0).scale *= .25
 	instance.get_child(1).scale *= .25
 	
 	objects.append(instance)
 	object_container.add_child(instance)
-	
-	
-
-	

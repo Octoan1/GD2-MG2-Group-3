@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="MG2 - Group 3"
-run/main_scene="uid://rl0y5cwvjkot"
+run/main_scene="uid://d3runbqkrsy5w"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://sprites/icon.svg"
+
+[autoload]
+
+score_board="*uid://ckq364fpuw50x"
 
 [display]
 
