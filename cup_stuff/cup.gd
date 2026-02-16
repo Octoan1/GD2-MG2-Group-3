@@ -19,34 +19,11 @@ func _process(delta: float) -> void:
 		self.rotation += rotation_speed * delta * 1.1 
 	else:
 		self.rotation += -rotation_speed * delta
-	
-# UNUSED
-#func rotate_no_velocity(delta: float):	
-	#if Input.is_action_pressed("Action"):
-		#self.rotation += rotation_speed * delta
-	#else:
-		#self.rotation += -rotation_speed * delta
 
-# UNUSED
-#func rotate_velocity(delta: float):
-	#if (prev_rotate == null):
-		#prev_rotate = rotation
-	#
-	#if (velocity == null):
-		#velocity = 0;
-	#
-	#if(Input.is_action_pressed("Action")):
-		#velocity = -push_amount * speed_percent / 100
-		#print("2")
-		#pass
-	#
-	#else:
-		#rotation += delta * rotation_speed # * velocity * speed_percent / 100
-#
-	#velocity += delta * speed_percent / 100
-	#
-	#print(velocity)
-	#
-	#if Input.is_action_pressed("Action"):
-		#velocity = -push_amount * speed_percent / 100
-		#print("1")
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if body is IngredientObject:
+		var ingredient: IngredientObject = body
+		
+		print(ingredient.name)
+		ingredient.modulate = Color.DARK_GOLDENROD
+		ingredient.has_been_in_cup = true

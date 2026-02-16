@@ -6,10 +6,11 @@ signal wave_start(wave_index: int)
 signal wave_end(wave_end_delay: float)
 
 @export var start_delay: float
-@export var spawn_pos: Vector2
 @export var level_complete_predicate: Callable
 @export var object_spawner: Spawner
 @export var levels: Array[Level]
+@export var spawn_pos_marker: Marker2D
+var spawn_pos: Vector2 # made it originate as Market2D so its more visible in inspector 
 
 # level details
 var level_index: int = 0
@@ -27,11 +28,14 @@ var sent_wave_start: bool = false
 var sent_wave_end: bool = false
 
 func start_level():
+	score_board.win_score = current_level().score
+	score_board.player_score = 0
 	running_level = true
 
 # Finish the level before all the waves are to run out
 func finish_level():
-	level_index += 1
+	if score_board.player_score >= score_board.win_score:
+		level_index += 1
 	running_level = false
 	reset_wave_data()
 	
@@ -50,6 +54,7 @@ func reset_wave_data():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	reset_wave_data()
+	spawn_pos = spawn_pos_marker.global_position
 	waves_complete.connect(finish_level)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -107,4 +112,7 @@ func current_wave() -> Wave:
 	return current_waves()[wave_index]
 	
 func current_waves() -> Array[Wave]:
-	return levels[level_index].waves
+	return current_level().waves
+
+func current_level() -> Level:
+	return levels[level_index]

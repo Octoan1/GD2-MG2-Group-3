@@ -6,6 +6,7 @@
 [node name="Title" type="Node2D" unique_id=1465934988]
 script = ExtResource("1_y7k74")
 scene_change = "main"
+delay_click = 0.25
 
 [node name="Coffee" parent="." unique_id=1285840319 instance=ExtResource("2_oyqm6")]
 position = Vector2(-87.99988, -5.000122)
@@ -18,5 +19,6 @@ offset_left = -77.0
 offset_top = -11.0
 offset_right = 83.0
 offset_bottom = 12.0
+scale = Vector2(2, 2)
 pivot_offset = Vector2(77, 11)
 text = "Press Space to start"

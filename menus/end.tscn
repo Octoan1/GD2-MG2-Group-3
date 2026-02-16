@@ -20,6 +20,7 @@ offset_left = -178.0
 offset_top = -24.0
 offset_right = 179.0
 offset_bottom = -1.0
+scale = Vector2(2, 2)
 pivot_offset = Vector2(179, 24)
 text = "You are the champion coffee maker!
 Score 50 / 50"
@@ -28,9 +29,10 @@ script = ExtResource("3_1pknx")
 
 [node name="Space" type="Label" parent="." unique_id=988145654]
 offset_left = -177.0
-offset_top = 28.0
+offset_top = 161.0
 offset_right = 180.0
-offset_bottom = 51.0
+offset_bottom = 184.0
+scale = Vector2(2, 2)
 pivot_offset = Vector2(179, 24)
 text = "Press space to return"
 horizontal_alignment = 1

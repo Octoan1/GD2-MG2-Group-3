@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dvcb12w0ya81d"]
 
-[ext_resource type="Texture2D" uid="uid://duorlbu4is5dt" path="res://sprites/Untitled 3.png" id="1_pc2wa"]
+[ext_resource type="Script" uid="uid://cgyayhw3ucp6d" path="res://object_spawner/ingredient_object.gd" id="1_n5j8i"]
+[ext_resource type="Texture2D" uid="uid://duorlbu4is5dt" path="res://Sprites/Untitled 3.png" id="1_pc2wa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b18de"]
 radius = 62.801273
@@ -8,6 +9,8 @@ radius = 62.801273
 [node name="Germ" type="RigidBody2D" unique_id=1991736768 groups=["germ"]]
 collision_layer = 2
 collision_mask = 3
+script = ExtResource("1_n5j8i")
+value = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1948324836]
 position = Vector2(0, -3.8146973e-06)

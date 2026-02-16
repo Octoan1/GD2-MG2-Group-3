@@ -21,8 +21,8 @@ score_board="*uid://ckq364fpuw50x"
 
 [display]
 
-window/size/viewport_width=512
-window/size/viewport_height=512
+window/size/viewport_width=1024
+window/size/viewport_height=1536
 window/size/window_width_override=1024
 window/size/window_height_override=1024
 window/stretch/mode="viewport"

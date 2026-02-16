@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://d0u46ocpqtcyc"]
 
-[ext_resource type="Texture2D" uid="uid://baixr8s72xrug" path="res://sprites/Untitled2.png" id="1_r5rcm"]
+[ext_resource type="Script" uid="uid://cgyayhw3ucp6d" path="res://object_spawner/ingredient_object.gd" id="1_qlbd3"]
+[ext_resource type="Texture2D" uid="uid://baixr8s72xrug" path="res://Sprites/Untitled2.png" id="1_r5rcm"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yq3m0"]
 radius = 64.629715
@@ -8,6 +9,7 @@ radius = 64.629715
 [node name="CoffeeBean" type="RigidBody2D" unique_id=1766887428 groups=["coffee"]]
 collision_layer = 2
 collision_mask = 3
+script = ExtResource("1_qlbd3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2067582569]
 scale = Vector2(0.196, 0.2)
