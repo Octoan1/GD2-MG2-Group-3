@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cswvmjnmknhck"]
 
 [ext_resource type="PackedScene" uid="uid://ctyu5gadbmowi" path="res://cup_stuff/collection_cup.tscn" id="1_svmmk"]
-[ext_resource type="Texture2D" uid="uid://bm1ttafj72cgu" path="res://sprites/Untitled 8.png" id="2_xouwm"]
+[ext_resource type="Texture2D" uid="uid://bkslusuk258gq" path="res://Sprites/coffeebowlwithwhite.png" id="2_svmmk"]
 
 [node name="VictoryCup" unique_id=1882889429 instance=ExtResource("1_svmmk")]
 scale = Vector2(1.9200001, 1.9200001)
@@ -9,7 +9,7 @@ scale = Vector2(1.9200001, 1.9200001)
 [node name="Sprite2D" parent="." index="0" unique_id=1139283360]
 position = Vector2(-1.9073486e-06, 0)
 scale = Vector2(0.08166667, 0.080020174)
-texture = ExtResource("2_xouwm")
+texture = ExtResource("2_svmmk")
 offset = Vector2(208.16327, 49.987396)
 
 [node name="CollisionPolygon2D" parent="." index="1" unique_id=1417663124]

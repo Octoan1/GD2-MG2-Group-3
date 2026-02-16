@@ -80,8 +80,14 @@ func spawn_object(type: Ingredient.Type, spawn_position: Vector2) -> void:
 			k += 1
 	
 	instance.global_position = spawn_position
-	instance.get_child(0).scale *= .25
-	instance.get_child(1).scale *= .25
+	if type == Ingredient.Type.GERM:
+		instance.get_child(0).scale *= 1
+		instance.get_child(1).scale *= 1
+	else:
+		instance.get_child(0).scale *= .25
+		instance.get_child(1).scale *= 0.25
+
+		
 	
 	objects.append(instance)
 	object_container.add_child(instance)
