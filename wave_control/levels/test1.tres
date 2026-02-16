@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Level" format=3 uid="uid://c3vtb2cuuunfb"]
+
+[ext_resource type="Script" uid="uid://cmnp1aqvw5fgm" path="res://wave_control/level.gd" id="1_t5evj"]
+[ext_resource type="Script" uid="uid://ch7m5h5rnpiad" path="res://wave_control/wave.gd" id="2_defeu"]
+[ext_resource type="Resource" uid="uid://c6vvi7gustbex" path="res://wave_control/waves/wave_simple.tres" id="3_defeu"]
+
+[resource]
+script = ExtResource("1_t5evj")
+waves = Array[ExtResource("2_defeu")]([ExtResource("3_defeu")])
+score = 10
+metadata/_custom_type_script = "uid://cmnp1aqvw5fgm"

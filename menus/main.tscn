@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://t1og2mqy37ov" path="res://shader/coffee.tscn" id="1_gb18u"]
 [ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="2_k8qw4"]
 [ext_resource type="PackedScene" uid="uid://c8ucsaoy7oe6e" path="res://wave_control/wave_spawner.tscn" id="3_787nb"]
-[ext_resource type="Script" uid="uid://ch7m5h5rnpiad" path="res://wave_control/wave_resource.gd" id="4_i8mlb"]
+[ext_resource type="Script" uid="uid://ch7m5h5rnpiad" path="res://wave_control/wave.gd" id="4_i8mlb"]
 [ext_resource type="Resource" uid="uid://c6vvi7gustbex" path="res://wave_control/waves/wave_simple.tres" id="5_h3p7w"]
 [ext_resource type="Resource" uid="uid://bq74jobe23ki2" path="res://wave_control/waves/wave_germs.tres" id="6_77eub"]
 [ext_resource type="Resource" uid="uid://cyos6s2pj6u3j" path="res://wave_control/waves/wave_fast.tres" id="7_hnx4n"]

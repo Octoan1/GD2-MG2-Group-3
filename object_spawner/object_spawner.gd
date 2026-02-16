@@ -1,4 +1,4 @@
-extends Node2D
+extends Spawner
 class_name ObjectSpawner
 
 signal remove_all_ingredients

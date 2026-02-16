@@ -1,9 +1,36 @@
 [gd_scene format=3 uid="uid://c8ucsaoy7oe6e"]
 
 [ext_resource type="Script" uid="uid://bl83stjneqpq6" path="res://wave_control/wave_spawner.gd" id="1_vmr0h"]
-[ext_resource type="Script" uid="uid://ch7m5h5rnpiad" path="res://wave_control/wave_resource.gd" id="2_d7leg"]
-[ext_resource type="Resource" uid="uid://c6vvi7gustbex" path="res://wave_control/waves/wave_simple.tres" id="3_k2ic5"]
+[ext_resource type="Script" uid="uid://cmnp1aqvw5fgm" path="res://wave_control/level.gd" id="2_awo6i"]
+[ext_resource type="Resource" uid="uid://c3vtb2cuuunfb" path="res://wave_control/levels/test1.tres" id="3_awo6i"]
+[ext_resource type="Script" uid="uid://ba1a8k18jc2mo" path="res://wave_control/spawner.gd" id="4_lmc33"]
+[ext_resource type="Resource" uid="uid://bi1ryyvoby8n2" path="res://wave_control/levels/test2.tres" id="4_qql5r"]
+[ext_resource type="Script" uid="uid://dg3cwpg0cc31m" path="res://menus/hold_scroller.gd" id="6_t6v3m"]
+[ext_resource type="Script" uid="uid://cxqgsr2mxct5d" path="res://wave_control/predicate_test.gd" id="8_4hpx0"]
+[ext_resource type="Script" uid="uid://y1q3llqtgola" path="res://menus/confirm_action.gd" id="8_qql5r"]
 
-[node name="WaveSpawner" type="Node2D" unique_id=248348919]
+[node name="WaveSpawner" type="Node2D" unique_id=248348919 node_paths=PackedStringArray("object_spawner")]
 script = ExtResource("1_vmr0h")
-waves = Array[ExtResource("2_d7leg")]([ExtResource("3_k2ic5"), null])
+object_spawner = NodePath("Spawner")
+levels = Array[ExtResource("2_awo6i")]([ExtResource("3_awo6i"), ExtResource("4_qql5r")])
+
+[node name="Spawner" type="Node2D" parent="." unique_id=1209090634]
+script = ExtResource("4_lmc33")
+
+[node name="ConfirmAction" type="Node2D" parent="." unique_id=306427348]
+script = ExtResource("8_qql5r")
+hold_threshold = 1.0
+
+[node name="Scroller" type="HScrollBar" parent="ConfirmAction" unique_id=1709509195 node_paths=PackedStringArray("confirm")]
+offset_left = 26.0
+offset_top = 17.0
+offset_right = 76.0
+offset_bottom = 25.0
+max_value = 1.0
+script = ExtResource("6_t6v3m")
+confirm = NodePath("..")
+
+[node name="PredicateTest" type="Node2D" parent="." unique_id=86414125]
+script = ExtResource("8_4hpx0")
+
+[connection signal="on_long_press" from="ConfirmAction" to="." method="start_level"]
