@@ -22,9 +22,9 @@ func _on_cup_contents_detection_body_entered(body: Node2D) -> void:
 func check_recipe(recipe: Recipe) -> void:
 	match recipe:
 		Recipe.COFFEE:
-			var coffee = null
-			var water = null
-			for ingredient: RigidBody2D in cup_contents_detection.get_overlapping_bodies():
+			var coffee: IngredientObject = null
+			var water: IngredientObject = null
+			for ingredient: IngredientObject in cup_contents_detection.get_overlapping_bodies():
 				if ingredient.is_in_group("coffee") and coffee == null:
 					#ingredient.modulate = Color.GOLD
 					coffee = ingredient
@@ -34,7 +34,12 @@ func check_recipe(recipe: Recipe) -> void:
 				elif ingredient.is_in_group("germ"):
 					update_score(-3, ingredient)
 				if coffee and water:
-					update_score(3, coffee, water)
+					var value = 0
+					
+					value += coffee.value * 2 if coffee.has_been_in_cup else coffee.value
+					value += water.value * 2 if water.has_been_in_cup else water.value
+					
+					update_score(value, coffee, water)
 					coffee = null
 					water = null
 				else: 
@@ -42,10 +47,11 @@ func check_recipe(recipe: Recipe) -> void:
 						ingredient.apply_impulse(Vector2(0,0))
 					
 		Recipe.TRASH:
-			for ingredient in cup_contents_detection.get_overlapping_bodies():
+			for ingredient: IngredientObject in cup_contents_detection.get_overlapping_bodies():
 				if ingredient.is_in_group("germ"):
 					#ingredient.modulate = Color.RED
-					update_score(1, ingredient)
+					var value = ingredient.value * 2 if not ingredient.has_been_in_cup else ingredient.value
+					update_score(value, ingredient)
 				else:
 					update_score(-1, ingredient)
 

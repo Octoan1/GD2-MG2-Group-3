@@ -8,7 +8,7 @@ signal remove_all_ingredients
 @export var germ: PackedScene
 @export var debug_mode: bool
 
-@onready var debug_label: Label = $"../DebugLabel"
+@onready var debug_label: Label = $"../UI/DebugLabel"
 @onready var object_container: Node = $ObjectContainer
 var objects = []
 
@@ -84,8 +84,10 @@ func spawn_object(type: Ingredient.Type, spawn_position: Vector2) -> void:
 		instance.get_child(0).scale *= 1
 		instance.get_child(1).scale *= 1
 	else:
-		instance.get_child(0).scale *= .25
-		instance.get_child(1).scale *= 0.25
+		# col shape
+		instance.get_child(0).scale *= 0.5
+		# sprite
+		instance.get_child(1).scale *= 0.5
 
 		
 	

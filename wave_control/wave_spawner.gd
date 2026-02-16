@@ -5,7 +5,8 @@ signal wave_start(wave_index: int)
 signal wave_end(wave_end_delay: float)
 
 @export var start_delay: float
-@export var spawn_pos: Vector2
+@export var spawn_pos_marker: Marker2D
+var spawn_pos: Vector2 # made it originate as Market2D so its more visible in inspector 
 @export var object_spawner: ObjectSpawner
 @export var waves: Array[Wave]
 
@@ -25,6 +26,7 @@ func current_wave() -> Wave:
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	time = -start_delay
+	spawn_pos = spawn_pos_marker.global_position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

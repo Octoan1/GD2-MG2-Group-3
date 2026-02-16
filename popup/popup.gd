@@ -41,7 +41,7 @@ func pulse_label(color: Color, text: String, spawn_pos: Vector2, duration: float
 	label.add_theme_color_override("font_color", color)
 	label.text = text
 	label.reset_size()
-	label.scale = Vector2(2, 2)
+	label.scale = Vector2(6, 6)
 	var half_size = label.size / 2
 	label.pivot_offset = half_size
 	var rand_rotate = randf_range(-5, 5)
@@ -61,9 +61,9 @@ func pulse_label(color: Color, text: String, spawn_pos: Vector2, duration: float
 
 func _on_wave_end(wave_end_delay: float) -> void:
 	next_wave.play()
-	pulse_label(Color.WHITE, "New wave in %d seconds" % wave_end_delay, Vector2(0, -150), wave_end_delay)
+	pulse_label(Color.WHITE, "New wave in %d seconds" % wave_end_delay, Vector2(0, -300), wave_end_delay)
 
 
 func _on_wave_start(wave_index: int) -> void:
 	wave_start.play()
-	pulse_label(Color.WHITE, "Wave %d" % (wave_index + 1), Vector2(0, -150), 2)
+	pulse_label(Color.WHITE, "Wave %d" % (wave_index + 1), Vector2(0, -300), 2)
