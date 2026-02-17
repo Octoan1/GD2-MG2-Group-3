@@ -68,7 +68,7 @@ func _ready() -> void:
 	reset_wave_data()
 	spawn_pos = spawn_pos_marker.global_position
 	waves_complete.connect(finish_level)
-	next_label.text = wave_to_string()
+	#next_label.text = wave_to_string()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
