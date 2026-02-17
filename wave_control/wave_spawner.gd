@@ -9,6 +9,7 @@ signal wave_end(wave_end_delay: float)
 var spawn_pos: Vector2 # made it originate as Market2D so its more visible in inspector 
 @export var object_spawner: ObjectSpawner
 @export var waves: Array[Wave]
+@export var next_label: Label
 
 var time: float = 0
 var prev_spawn_time: float = 0
@@ -27,6 +28,7 @@ func current_wave() -> Wave:
 func _ready() -> void:
 	time = -start_delay
 	spawn_pos = spawn_pos_marker.global_position
+	next_label.text = wave_to_string()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -67,10 +69,34 @@ func _process(delta: float) -> void:
 			waves_complete.emit()
 			sent_waves_complete = true
 			print("Waves complete!")
+	
+	#var final_index = current_wave().ingredients.size()-1
+	#if ingredient_index >= final_index:
+		#next_label.text = "Next Ingredient: Nothing"
+	#else:
+		#next_label.text = "Next Ingredient: %d" % current_wave().ingredients[ingredient_index + 1]
 
+func wave_to_string() -> String:
+	var test: String = ""
+	for i in range(ingredient_index, current_wave().ingredients.size()):
+		
+		var ingredient = current_wave().ingredients[i]
+		
+		match ingredient:
+			Ingredient.Type.WATER:
+				test += "Water\n"
+			Ingredient.Type.COFFEE_BEAN:
+				test += "Coffee Bean\n"
+			Ingredient.Type.GERM:
+				test += "Germ\n"
+
+	
+	return test
 
 func spawn_ingredient_random_position(ingredient: Ingredient.Type):
 	# print("Spawn?")
 	object_spawner.spawn_object(ingredient, spawn_pos)
 	prev_spawn_time = time
 	ingredient_index += 1
+	
+	next_label.text = wave_to_string()

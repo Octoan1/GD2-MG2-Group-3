@@ -13,7 +13,7 @@ config_version=5
 config/name="MG2 - Group 3"
 run/main_scene="uid://d3runbqkrsy5w"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://sprites/icon.svg"
+config/icon="uid://c7xq5qs4vfxlj"
 
 [autoload]
 
@@ -23,8 +23,6 @@ score_board="*uid://ckq364fpuw50x"
 
 window/size/viewport_width=1024
 window/size/viewport_height=1536
-window/size/window_width_override=1024
-window/size/window_height_override=1024
 window/stretch/mode="viewport"
 
 [global_group]

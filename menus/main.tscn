@@ -24,11 +24,12 @@ scale = Vector2(21.210938, 21.210938)
 
 [node name="ObjectSpawner" parent="." unique_id=123667683 instance=ExtResource("2_k8qw4")]
 
-[node name="WaveSpawner" parent="." unique_id=248348919 node_paths=PackedStringArray("spawn_pos_marker", "object_spawner") instance=ExtResource("3_787nb")]
+[node name="WaveSpawner" parent="." unique_id=248348919 node_paths=PackedStringArray("spawn_pos_marker", "object_spawner", "next_label") instance=ExtResource("3_787nb")]
 start_delay = 2.0
 spawn_pos_marker = NodePath("SpawnPos")
 object_spawner = NodePath("../ObjectSpawner")
 waves = Array[ExtResource("4_i8mlb")]([ExtResource("5_h3p7w"), ExtResource("5_h3p7w"), ExtResource("6_77eub"), ExtResource("5_h3p7w"), ExtResource("7_hnx4n"), ExtResource("8_ciosg"), ExtResource("7_hnx4n"), ExtResource("9_sxub3"), ExtResource("5_h3p7w")])
+next_label = NodePath("../UI/WaveLabel")
 
 [node name="SpawnPos" type="Marker2D" parent="WaveSpawner" unique_id=908576087]
 position = Vector2(2, -748)
@@ -36,6 +37,8 @@ position = Vector2(2, -748)
 [node name="Cup" parent="." unique_id=1604033659 instance=ExtResource("10_36uvt")]
 scale = Vector2(3, 3)
 rotation_speed = 1.5
+push_amount = null
+speed_percent = null
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=56953282]
 
@@ -88,12 +91,34 @@ Collect 50 to win!"
 script = ExtResource("14_fb1eh")
 
 [node name="DebugLabel" type="Label" parent="UI" unique_id=1612547457]
+visible = false
 layout_mode = 0
 offset_left = 41.5
 offset_top = -373.5
 offset_right = 246.5
 offset_bottom = -350.5
 text = "Selected Ingredient: Water"
+
+[node name="WaveLabel" type="Label" parent="UI" unique_id=691003952]
+layout_mode = 0
+offset_left = 120.0
+offset_top = -373.5
+offset_right = 246.5
+offset_bottom = -298.5
+text = "Water
+Coffee Bean
+Germ"
+
+[node name="NextUpLabel" type="Label" parent="UI" unique_id=1785007920]
+layout_mode = 0
+offset_left = 41.5
+offset_top = -373.5
+offset_right = 113.0
+offset_bottom = -350.5
+text = "Next Up:
+       ^
+       ^
+       ^"
 
 [connection signal="wave_end" from="WaveSpawner" to="Popup" method="_on_wave_end"]
 [connection signal="wave_start" from="WaveSpawner" to="Popup" method="_on_wave_start"]
