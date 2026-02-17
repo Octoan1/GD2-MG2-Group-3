@@ -14,7 +14,7 @@ signal wave_end(wave_end_delay: float, last_wave: bool)
 @export var spawn_pos_marker: Marker2D
 @export var below_marker: Marker2D
 var spawn_pos: Vector2 # made it originate as Market2D so its more visible in inspector 
-@export var next_label: Label
+@export var curr_wave_label: Label
 
 # level details
 var level_index: int = 0
@@ -68,7 +68,7 @@ func _ready() -> void:
 	reset_wave_data()
 	spawn_pos = spawn_pos_marker.global_position
 	waves_complete.connect(finish_level)
-	#next_label.text = wave_to_string()
+	curr_wave_label.text = wave_to_string() # buggin rn
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -121,12 +121,7 @@ func _process(delta: float) -> void:
 			waves_complete.emit()
 			print("Waves complete!")
 	
-	#var final_index = current_wave().ingredients.size()-1
-	#if ingredient_index >= final_index:
-		#next_label.text = "Next Ingredient: Nothing"
-	#else:
-		#next_label.text = "Next Ingredient: %d" % current_wave().ingredients[ingredient_index + 1]
-
+	
 func wave_to_string() -> String:
 	var test: String = ""
 	for i in range(ingredient_index, current_wave().ingredients.size()):
