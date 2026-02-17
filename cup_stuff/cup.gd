@@ -24,6 +24,12 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is IngredientObject:
 		var ingredient: IngredientObject = body
 		
-		print(ingredient.name)
-		ingredient.modulate = Color.DARK_GOLDENROD
+		match ingredient.type:
+			Ingredient.Type.COFFEE_BEAN:
+				ingredient.modulate = Color.DARK_GOLDENROD
+			Ingredient.Type.WATER:
+				ingredient.modulate = Color.SKY_BLUE
+			Ingredient.Type.GERM:
+				ingredient.modulate = Color.RED
+
 		ingredient.has_been_in_cup = true

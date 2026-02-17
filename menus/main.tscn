@@ -50,6 +50,7 @@ confirm = NodePath("..")
 
 [node name="BelowPos" type="Marker2D" parent="WaveSpawner" unique_id=459164614]
 position = Vector2(4, 316)
+next_label = NodePath("../UI/WaveLabel")
 
 [node name="SpawnPos" type="Marker2D" parent="WaveSpawner" unique_id=908576087]
 position = Vector2(2, -748)
@@ -57,6 +58,8 @@ position = Vector2(2, -748)
 [node name="Cup" parent="." unique_id=1604033659 instance=ExtResource("10_36uvt")]
 scale = Vector2(3, 3)
 rotation_speed = 1.5
+push_amount = null
+speed_percent = null
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=56953282]
 
@@ -109,6 +112,7 @@ Collect 50 to win!"
 script = ExtResource("14_fb1eh")
 
 [node name="DebugLabel" type="Label" parent="UI" unique_id=1612547457]
+visible = false
 layout_mode = 0
 offset_left = 41.5
 offset_top = -373.5
@@ -120,6 +124,27 @@ text = "Selected Ingredient: Water"
 [connection signal="level_complete" from="WaveSpawner" to="Popup" method="_on_level_complete"]
 [connection signal="level_start" from="WaveSpawner" to="Popup" method="_on_level_start"]
 [connection signal="levels_complete" from="WaveSpawner" to="UI/Score" method="_on_levels_complete"]
+[node name="WaveLabel" type="Label" parent="UI" unique_id=691003952]
+layout_mode = 0
+offset_left = 120.0
+offset_top = -373.5
+offset_right = 246.5
+offset_bottom = -298.5
+text = "Water
+Coffee Bean
+Germ"
+
+[node name="NextUpLabel" type="Label" parent="UI" unique_id=1785007920]
+layout_mode = 0
+offset_left = 41.5
+offset_top = -373.5
+offset_right = 113.0
+offset_bottom = -350.5
+text = "Next Up:
+       ^
+       ^
+       ^"
+
 [connection signal="wave_end" from="WaveSpawner" to="Popup" method="_on_wave_end"]
 [connection signal="wave_start" from="WaveSpawner" to="Popup" method="_on_wave_start"]
 [connection signal="on_long_press" from="WaveSpawner/ConfirmAction" to="WaveSpawner" method="start_level"]

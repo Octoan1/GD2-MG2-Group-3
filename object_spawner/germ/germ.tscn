@@ -10,7 +10,7 @@ radius = 62.801273
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_n5j8i")
-value = 1
+type = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1948324836]
 position = Vector2(0, -3.8146973e-06)
