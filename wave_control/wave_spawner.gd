@@ -1,15 +1,18 @@
 extends Node2D
 
+signal level_start(index: int)
+signal level_complete(passed: bool)
 signal waves_complete
 signal levels_complete
 signal wave_start(wave_index: int)
-signal wave_end(wave_end_delay: float)
+signal wave_end(wave_end_delay: float, last_wave: bool)
 
 @export var start_delay: float
-@export var level_complete_predicate: Callable
-@export var object_spawner: Spawner
+@export var end_delay: float
+@export var object_spawner: ObjectSpawner
 @export var levels: Array[Level]
 @export var spawn_pos_marker: Marker2D
+@export var below_marker: Marker2D
 var spawn_pos: Vector2 # made it originate as Market2D so its more visible in inspector 
 
 # level details
@@ -28,15 +31,23 @@ var sent_wave_start: bool = false
 var sent_wave_end: bool = false
 
 func start_level():
-	score_board.win_score = current_level().score
-	score_board.player_score = 0
-	running_level = true
+	if not running_level:
+		level_start.emit(level_index)
+		score_board.win_score = current_level().score
+		score_board.player_score = 0
+		running_level = true
 
 # Finish the level before all the waves are to run out
 func finish_level():
-	if score_board.player_score >= score_board.win_score:
+	print("Finish level invoked")
+	var passed = score_board.player_score >= score_board.win_score
+	if passed:
 		level_index += 1
+	
+	level_complete.emit(passed)
+	
 	running_level = false
+	
 	reset_wave_data()
 	
 	if level_index >= levels.size():
@@ -85,9 +96,16 @@ func _process(delta: float) -> void:
 				spawn_ingredient_random_position(current_wave().ingredients[ingredient_index])
 		# no more ingredients
 		else:
+			var last_wave = wave_index >= current_waves().size() - 1
 			if not sent_wave_end:
-				wave_end.emit(current_wave().delay_next_wave)
+				wave_end.emit(current_wave().delay_next_wave, last_wave)
 				sent_wave_end = true
+			
+			if last_wave and not all_ingredients_below(): 
+				prev_spawn_time = time
+				spawn_delta = -1
+			# wait time OR if it is the last wave wait until all ingredients are below a certain point
+
 			if spawn_delta >= current_wave().delay_next_wave:
 				prev_spawn_time = time
 				ingredient_index = 0
@@ -107,12 +125,19 @@ func spawn_ingredient_random_position(ingredient: Ingredient.Type):
 	prev_spawn_time = time
 	ingredient_index += 1
 	
+func all_ingredients_below() -> bool:
+	for child in object_spawner.object_container.get_children():
+		if child.position.y < below_marker.global_position.y:
+			return false
+	
+	return true
+	
 # helper stuff
 func current_wave() -> Wave:
 	return current_waves()[wave_index]
 	
 func current_waves() -> Array[Wave]:
 	return current_level().waves
-
+	
 func current_level() -> Level:
 	return levels[level_index]

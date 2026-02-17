@@ -7,5 +7,4 @@
 [resource]
 script = ExtResource("1_t5evj")
 waves = Array[ExtResource("2_defeu")]([ExtResource("3_defeu")])
-score = 10
 metadata/_custom_type_script = "uid://cmnp1aqvw5fgm"

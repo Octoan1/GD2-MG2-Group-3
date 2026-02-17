@@ -10,7 +10,7 @@ var hold_triggered: bool
 
 # require the player to press and hold for something to occur
 func _process(delta: float):
-	if Input.is_action_pressed("action"): # Replace with your action name
+	if Input.is_action_pressed("action"):
 		hold_time += delta
 		
 		# Check if we've passed the threshold and haven't triggered yet
@@ -22,8 +22,7 @@ func _process(delta: float):
 		if hold_triggered:
 			_on_long_press_released()
 			
-		hold_time = 0.0
-		hold_triggered = false
+		reset()
 		
 func _on_long_press_triggered():
 	on_long_press.emit()
@@ -35,3 +34,7 @@ func _on_long_press_released():
 
 func get_pressed_amount() -> float:
 	return clamp(hold_time / hold_threshold, 0, 1)
+
+func reset(_reset: bool = true) -> void:
+	hold_time = 0.0
+	hold_triggered = false

@@ -2,12 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://t1og2mqy37ov" path="res://shader/coffee.tscn" id="1_gb18u"]
 [ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="2_k8qw4"]
-[ext_resource type="PackedScene" uid="uid://c8ucsaoy7oe6e" path="res://wave_control/wave_spawner.tscn" id="3_787nb"]
+[ext_resource type="Script" uid="uid://bl83stjneqpq6" path="res://wave_control/wave_spawner.gd" id="3_k8qw4"]
 [ext_resource type="Script" uid="uid://cmnp1aqvw5fgm" path="res://wave_control/level.gd" id="4_4mdi5"]
 [ext_resource type="Resource" uid="uid://c3vtb2cuuunfb" path="res://wave_control/levels/test1.tres" id="5_6o3oi"]
 [ext_resource type="Resource" uid="uid://bi1ryyvoby8n2" path="res://wave_control/levels/test2.tres" id="6_gb18u"]
 [ext_resource type="Resource" uid="uid://c3irfhj0thaye" path="res://wave_control/levels/level1.tres" id="7_k8qw4"]
+[ext_resource type="Script" uid="uid://y1q3llqtgola" path="res://menus/confirm_action.gd" id="9_i8mlb"]
 [ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup_stuff/cup.tscn" id="10_36uvt"]
+[ext_resource type="Script" uid="uid://dg3cwpg0cc31m" path="res://menus/hold_scroller.gd" id="10_h3p7w"]
 [ext_resource type="PackedScene" uid="uid://dt1rfxwv0qi3t" path="res://cup_stuff/trash_can.tscn" id="11_q0pb7"]
 [ext_resource type="PackedScene" uid="uid://cswvmjnmknhck" path="res://cup_stuff/victory_cup.tscn" id="12_u7aby"]
 [ext_resource type="PackedScene" uid="uid://cya8y0qjtkqxn" path="res://audio/music_player.tscn" id="13_b6cyy"]
@@ -22,11 +24,32 @@ scale = Vector2(21.210938, 21.210938)
 
 [node name="ObjectSpawner" parent="." unique_id=123667683 instance=ExtResource("2_k8qw4")]
 
-[node name="WaveSpawner" parent="." unique_id=248348919 node_paths=PackedStringArray("object_spawner", "spawn_pos_marker") instance=ExtResource("3_787nb")]
+[node name="WaveSpawner" type="Node2D" parent="." unique_id=248348919 node_paths=PackedStringArray("object_spawner", "spawn_pos_marker", "below_marker")]
+script = ExtResource("3_k8qw4")
 start_delay = 2.0
+end_delay = 2.0
 object_spawner = NodePath("../ObjectSpawner")
 levels = Array[ExtResource("4_4mdi5")]([ExtResource("5_6o3oi"), ExtResource("6_gb18u"), ExtResource("7_k8qw4")])
 spawn_pos_marker = NodePath("SpawnPos")
+below_marker = NodePath("BelowPos")
+
+[node name="ConfirmAction" type="Node2D" parent="WaveSpawner" unique_id=306427348]
+position = Vector2(-612, -766)
+scale = Vector2(4.9599977, 4.9599977)
+script = ExtResource("9_i8mlb")
+hold_threshold = 1.0
+
+[node name="Scroller" type="HScrollBar" parent="WaveSpawner/ConfirmAction" unique_id=1709509195 node_paths=PackedStringArray("confirm")]
+offset_left = 26.0
+offset_top = 17.0
+offset_right = 76.0
+offset_bottom = 25.0
+max_value = 1.0
+script = ExtResource("10_h3p7w")
+confirm = NodePath("..")
+
+[node name="BelowPos" type="Marker2D" parent="WaveSpawner" unique_id=459164614]
+position = Vector2(4, 316)
 
 [node name="SpawnPos" type="Marker2D" parent="WaveSpawner" unique_id=908576087]
 position = Vector2(2, -748)
@@ -93,9 +116,13 @@ offset_right = 246.5
 offset_bottom = -350.5
 text = "Selected Ingredient: Water"
 
+[connection signal="level_complete" from="WaveSpawner" to="WaveSpawner/ConfirmAction" method="reset"]
+[connection signal="level_complete" from="WaveSpawner" to="Popup" method="_on_level_complete"]
+[connection signal="level_start" from="WaveSpawner" to="Popup" method="_on_level_start"]
+[connection signal="levels_complete" from="WaveSpawner" to="UI/Score" method="_on_levels_complete"]
 [connection signal="wave_end" from="WaveSpawner" to="Popup" method="_on_wave_end"]
 [connection signal="wave_start" from="WaveSpawner" to="Popup" method="_on_wave_start"]
-[connection signal="waves_complete" from="WaveSpawner" to="UI/Score" method="_on_wave_spawner_waves_complete"]
+[connection signal="on_long_press" from="WaveSpawner/ConfirmAction" to="WaveSpawner" method="start_level"]
 [connection signal="score_changed" from="TrashCan" to="UI/Score" method="_update_score"]
 [connection signal="score_changed" from="VictoryCup" to="UI/Score" method="_update_score"]
 [connection signal="score_changed" from="UI/Score" to="MusicPlayer" method="_on_update_score"]

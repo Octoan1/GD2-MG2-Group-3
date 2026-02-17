@@ -59,11 +59,23 @@ func pulse_label(color: Color, text: String, spawn_pos: Vector2, duration: float
 
 
 
-func _on_wave_end(wave_end_delay: float) -> void:
+func _on_wave_end(wave_end_delay: float, last_wave: bool) -> void:
 	next_wave.play()
-	pulse_label(Color.WHITE, "New wave in %d seconds" % wave_end_delay, Vector2(0, -300), wave_end_delay)
-
+	if not last_wave:
+		pulse_label(Color.WHITE, "New wave in %d seconds" % wave_end_delay, Vector2(0, -300), wave_end_delay)
+	else:
+		pulse_label(Color.WHITE, "All waves complete!", Vector2(0, -300), wave_end_delay)
 
 func _on_wave_start(wave_index: int) -> void:
 	wave_start.play()
 	pulse_label(Color.WHITE, "Wave %d" % (wave_index + 1), Vector2(0, -300), 2)
+	
+func _on_level_complete(passed:bool) -> void:
+	if passed:
+		pulse_label(Color.GREEN, "Level complete!", Vector2(0, -300), 2)
+	else:
+		pulse_label(Color.RED, "You failed!", Vector2(0, -300), 2)
+
+
+func _on_level_start(index: int) -> void:
+	pulse_label(Color.WHITE, "Level %d" % (index + 1), Vector2(0, -300), 2)
