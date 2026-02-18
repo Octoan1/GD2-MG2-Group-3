@@ -68,7 +68,7 @@ func _ready() -> void:
 	reset_wave_data()
 	spawn_pos = spawn_pos_marker.global_position
 	waves_complete.connect(finish_level)
-	curr_wave_label.text = wave_to_string() # buggin rn
+	curr_wave_label.text = wave_to_string()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -144,6 +144,7 @@ func spawn_ingredient_random_position(ingredient: Ingredient.Type):
 	object_spawner.spawn_object(ingredient, spawn_pos)
 	prev_spawn_time = time
 	ingredient_index += 1
+	curr_wave_label.text = wave_to_string()
 	
 func all_ingredients_below() -> bool:
 	for child in object_spawner.object_container.get_children():
