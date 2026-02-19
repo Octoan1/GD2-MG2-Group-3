@@ -4,17 +4,21 @@
 [ext_resource type="PackedScene" uid="uid://3l24jhapkoql" path="res://object_spawner/object_spawner.tscn" id="2_k8qw4"]
 [ext_resource type="Script" uid="uid://bl83stjneqpq6" path="res://wave_control/wave_spawner.gd" id="3_k8qw4"]
 [ext_resource type="Script" uid="uid://cmnp1aqvw5fgm" path="res://wave_control/level.gd" id="4_4mdi5"]
-[ext_resource type="Resource" uid="uid://c3vtb2cuuunfb" path="res://wave_control/levels/test1.tres" id="5_6o3oi"]
-[ext_resource type="Resource" uid="uid://bi1ryyvoby8n2" path="res://wave_control/levels/test2.tres" id="6_gb18u"]
-[ext_resource type="Resource" uid="uid://c3irfhj0thaye" path="res://wave_control/levels/level1.tres" id="7_k8qw4"]
+[ext_resource type="Resource" uid="uid://c3vtb2cuuunfb" path="res://wave_control/levels/level1.tres" id="5_6o3oi"]
+[ext_resource type="AudioStream" uid="uid://excgwl0ja5k6" path="res://audio/with_caffeine.ogg" id="6_77eub"]
+[ext_resource type="Resource" uid="uid://bi1ryyvoby8n2" path="res://wave_control/levels/level2.tres" id="6_gb18u"]
+[ext_resource type="Resource" uid="uid://c3irfhj0thaye" path="res://wave_control/levels/level3.tres" id="7_k8qw4"]
+[ext_resource type="PackedScene" uid="uid://7bh2exssc3io" path="res://ui/h_slider.tscn" id="9_gb18u"]
 [ext_resource type="Script" uid="uid://y1q3llqtgola" path="res://menus/confirm_action.gd" id="9_i8mlb"]
 [ext_resource type="PackedScene" uid="uid://bfdj7se1k83q1" path="res://cup_stuff/cup.tscn" id="10_36uvt"]
-[ext_resource type="Script" uid="uid://dg3cwpg0cc31m" path="res://menus/hold_scroller.gd" id="10_h3p7w"]
 [ext_resource type="PackedScene" uid="uid://dt1rfxwv0qi3t" path="res://cup_stuff/trash_can.tscn" id="11_q0pb7"]
 [ext_resource type="PackedScene" uid="uid://cswvmjnmknhck" path="res://cup_stuff/victory_cup.tscn" id="12_u7aby"]
-[ext_resource type="PackedScene" uid="uid://cya8y0qjtkqxn" path="res://audio/music_player.tscn" id="13_b6cyy"]
+[ext_resource type="Texture2D" uid="uid://b31mi05i4w72q" path="res://sprites/level up.png" id="13_i8mlb"]
 [ext_resource type="Script" uid="uid://boh08eotpos5r" path="res://cup_stuff/score.gd" id="14_fb1eh"]
+[ext_resource type="Script" uid="uid://b2qc1t2sjhmi7" path="res://ui/level_popup.gd" id="14_h3p7w"]
 [ext_resource type="PackedScene" uid="uid://dq5sjncsn4yn7" path="res://popup/popup.tscn" id="15_6gsuq"]
+[ext_resource type="Texture2D" uid="uid://wcy4jmkfs1xj" path="res://sprites/score.png" id="15_787nb"]
+[ext_resource type="FontFile" uid="uid://blbnuv7ey1un5" path="res://ui/candy-beans/Candy Beans.otf" id="16_787nb"]
 
 [node name="Main" type="Node2D" unique_id=1991473030]
 
@@ -24,42 +28,9 @@ scale = Vector2(21.210938, 21.210938)
 
 [node name="ObjectSpawner" parent="." unique_id=123667683 instance=ExtResource("2_k8qw4")]
 
-[node name="WaveSpawner" type="Node2D" parent="." unique_id=248348919 node_paths=PackedStringArray("object_spawner", "spawn_pos_marker", "below_marker", "curr_wave_label")]
-script = ExtResource("3_k8qw4")
-start_delay = 2.0
-end_delay = 2.0
-object_spawner = NodePath("../ObjectSpawner")
-levels = Array[ExtResource("4_4mdi5")]([ExtResource("5_6o3oi"), ExtResource("6_gb18u"), ExtResource("7_k8qw4")])
-spawn_pos_marker = NodePath("SpawnPos")
-below_marker = NodePath("BelowPos")
-curr_wave_label = NodePath("../UI/WaveLabel")
-
-[node name="ConfirmAction" type="Node2D" parent="WaveSpawner" unique_id=306427348]
-position = Vector2(-612, -766)
-scale = Vector2(4.9599977, 4.9599977)
-script = ExtResource("9_i8mlb")
-hold_threshold = 1.0
-
-[node name="Scroller" type="HScrollBar" parent="WaveSpawner/ConfirmAction" unique_id=1709509195 node_paths=PackedStringArray("confirm")]
-offset_left = 26.0
-offset_top = 17.0
-offset_right = 76.0
-offset_bottom = 25.0
-max_value = 1.0
-script = ExtResource("10_h3p7w")
-confirm = NodePath("..")
-
-[node name="BelowPos" type="Marker2D" parent="WaveSpawner" unique_id=459164614]
-position = Vector2(4, 316)
-
-[node name="SpawnPos" type="Marker2D" parent="WaveSpawner" unique_id=908576087]
-position = Vector2(2, -748)
-
 [node name="Cup" parent="." unique_id=1604033659 instance=ExtResource("10_36uvt")]
 scale = Vector2(3, 3)
 rotation_speed = 1.5
-push_amount = null
-speed_percent = null
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=56953282]
 
@@ -71,18 +42,102 @@ scale = Vector2(4, 3.429)
 position = Vector2(274, 654)
 scale = Vector2(4, 4)
 
-[node name="MusicPlayer" parent="." unique_id=1316893435 instance=ExtResource("13_b6cyy")]
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=1677544150]
+stream = ExtResource("6_77eub")
+volume_db = -5.0
+autoplay = true
 
 [node name="Popup" parent="." unique_id=314937224 instance=ExtResource("15_6gsuq")]
 
+[node name="WaveSpawner" type="Node2D" parent="." unique_id=248348919 node_paths=PackedStringArray("object_spawner", "spawn_pos_marker", "below_marker", "curr_wave_label", "score_label")]
+script = ExtResource("3_k8qw4")
+start_delay = 2.0
+end_delay = 2.0
+object_spawner = NodePath("../ObjectSpawner")
+levels = Array[ExtResource("4_4mdi5")]([ExtResource("5_6o3oi"), ExtResource("6_gb18u"), ExtResource("7_k8qw4")])
+spawn_pos_marker = NodePath("SpawnPos")
+below_marker = NodePath("BelowPos")
+curr_wave_label = NodePath("../UI/WaveLabel")
+score_label = NodePath("../UI/Score2")
+
+[node name="BelowPos" type="Marker2D" parent="WaveSpawner" unique_id=459164614]
+position = Vector2(4, 316)
+
+[node name="SpawnPos" type="Marker2D" parent="WaveSpawner" unique_id=908576087]
+position = Vector2(2, -748)
+
 [node name="UI" type="Control" parent="." unique_id=1461214465]
+z_index = 100
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(2, 2)
 
+[node name="LevelUp" type="Sprite2D" parent="UI" unique_id=220021379 node_paths=PackedStringArray("level_label", "wave_spawner")]
+position = Vector2(2, 45.5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("13_i8mlb")
+script = ExtResource("14_h3p7w")
+level_label = NodePath("Levellabel")
+wave_spawner = NodePath("../../WaveSpawner")
+
+[node name="Holdlabel" type="Label" parent="UI/LevelUp" unique_id=1405705403]
+offset_left = -330.0
+offset_top = -125.0
+offset_right = 321.0
+offset_bottom = -23.0
+theme_override_colors/font_color = Color(0.24313726, 0.16078432, 0.08627451, 1)
+theme_override_fonts/font = ExtResource("16_787nb")
+theme_override_font_sizes/font_size = 78
+text = "Hold to continue"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Levellabel" type="Label" parent="UI/LevelUp" unique_id=617027106]
+offset_left = -204.0
+offset_top = -280.0
+offset_right = 201.0
+offset_bottom = -178.0
+theme_override_colors/font_color = Color(0.24313726, 0.16078432, 0.08627451, 1)
+theme_override_fonts/font = ExtResource("16_787nb")
+theme_override_font_sizes/font_size = 78
+text = "Level 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmAction" type="Node2D" parent="UI/LevelUp" unique_id=306427348]
+position = Vector2(-304.5, -436)
+script = ExtResource("9_i8mlb")
+hold_threshold = 1.0
+
+[node name="HSlider" parent="UI/LevelUp/ConfirmAction" unique_id=2104961323 node_paths=PackedStringArray("confirm") instance=ExtResource("9_gb18u")]
+offset_left = -1.4999924
+offset_top = 346.0
+offset_right = 615.5
+offset_bottom = 566.7043
+confirm = NodePath("..")
+
+[node name="Score2" type="Sprite2D" parent="UI" unique_id=1720178170]
+position = Vector2(-152.5, -324)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("15_787nb")
+
+[node name="Score" type="Label" parent="UI/Score2" unique_id=313751055]
+offset_left = 4.999996
+offset_top = -37.5
+offset_right = 188.0
+offset_bottom = 41.5
+theme_override_colors/font_color = Color(0.24313726, 0.16078432, 0.08627451, 1)
+theme_override_fonts/font = ExtResource("16_787nb")
+theme_override_font_sizes/font_size = 60
+text = "25 / 50"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("14_fb1eh")
+
 [node name="Label" type="Label" parent="UI" unique_id=1290216403]
+visible = false
 layout_mode = 0
 offset_left = 109.0
 offset_top = 146.0
@@ -93,6 +148,7 @@ text = "Recipe:
 - 1 coffee"
 
 [node name="Label2" type="Label" parent="UI" unique_id=1147445821]
+visible = false
 layout_mode = 0
 offset_left = -174.0
 offset_top = 153.0
@@ -100,16 +156,6 @@ offset_right = -116.0
 offset_bottom = 202.0
 text = "Trash:
 - germs"
-
-[node name="Score" type="Label" parent="UI" unique_id=313751055]
-layout_mode = 0
-offset_left = -239.5
-offset_top = -370.0
-offset_right = -107.5
-offset_bottom = -321.0
-text = "Score: 0
-Collect 50 to win!"
-script = ExtResource("14_fb1eh")
 
 [node name="DebugLabel" type="Label" parent="UI" unique_id=1612547457]
 visible = false
@@ -126,11 +172,15 @@ offset_left = 120.0
 offset_top = -373.5
 offset_right = 246.5
 offset_bottom = -298.5
+theme_override_colors/font_color = Color(0.99, 0.84645003, 0.70290005, 1)
+theme_override_fonts/font = ExtResource("16_787nb")
 text = "Water
 Coffee Bean
 Germ"
+horizontal_alignment = 2
 
 [node name="NextUpLabel" type="Label" parent="UI" unique_id=1785007920]
+visible = false
 layout_mode = 0
 offset_left = 41.5
 offset_top = -373.5
@@ -141,14 +191,14 @@ text = "Next Up:
        ^
        ^"
 
-[connection signal="level_complete" from="WaveSpawner" to="WaveSpawner/ConfirmAction" method="reset"]
+[connection signal="score_changed" from="TrashCan" to="UI/Score2/Score" method="_update_score"]
+[connection signal="score_changed" from="VictoryCup" to="UI/Score2/Score" method="_update_score"]
 [connection signal="level_complete" from="WaveSpawner" to="Popup" method="_on_level_complete"]
+[connection signal="level_complete" from="WaveSpawner" to="UI/LevelUp" method="show_prompt"]
 [connection signal="level_start" from="WaveSpawner" to="Popup" method="_on_level_start"]
-[connection signal="levels_complete" from="WaveSpawner" to="UI/Score" method="_on_levels_complete"]
+[connection signal="level_start" from="WaveSpawner" to="UI/LevelUp" method="hide_prompt"]
+[connection signal="levels_complete" from="WaveSpawner" to="UI/Score2/Score" method="_on_levels_complete"]
 [connection signal="wave_end" from="WaveSpawner" to="Popup" method="_on_wave_end"]
 [connection signal="wave_start" from="WaveSpawner" to="Popup" method="_on_wave_start"]
-[connection signal="on_long_press" from="WaveSpawner/ConfirmAction" to="WaveSpawner" method="start_level"]
-[connection signal="score_changed" from="TrashCan" to="UI/Score" method="_update_score"]
-[connection signal="score_changed" from="VictoryCup" to="UI/Score" method="_update_score"]
-[connection signal="score_changed" from="UI/Score" to="MusicPlayer" method="_on_update_score"]
-[connection signal="score_changed" from="UI/Score" to="Popup" method="_on_update_score"]
+[connection signal="on_long_press" from="UI/LevelUp/ConfirmAction" to="WaveSpawner" method="start_level"]
+[connection signal="score_changed" from="UI/Score2/Score" to="Popup" method="_on_update_score"]

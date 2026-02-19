@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1fq4lhmkpeoh"
-path="res://.godot/imported/trashcanwithwhite.png-c670f9b4ae58db430101f7008aa05785.ctex"
+path="res://.godot/imported/trashcanwithwhite.png-010a419f28f34a61bc51e53f45c3e4ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/trashcanwithwhite.png"
-dest_files=["res://.godot/imported/trashcanwithwhite.png-c670f9b4ae58db430101f7008aa05785.ctex"]
+source_file="res://sprites/trashcanwithwhite.png"
+dest_files=["res://.godot/imported/trashcanwithwhite.png-010a419f28f34a61bc51e53f45c3e4ea.ctex"]
 
 [params]
 

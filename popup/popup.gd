@@ -4,6 +4,9 @@ extends Node2D
 @export var lose: AudioStreamPlayer2D
 @export var next_wave: AudioStreamPlayer2D
 @export var wave_start: AudioStreamPlayer2D
+@export var level_complete: AudioStreamPlayer2D
+@export var level_start: AudioStreamPlayer2D
+@export var level_lose: AudioStreamPlayer2D
 @export var point_text: Array[String]
 @export var lose_text: Array[String]
 
@@ -38,6 +41,7 @@ func pulse_label(color: Color, text: String, spawn_pos: Vector2, duration: float
 	add_child(label)
 	
 	# Set
+	label.add_theme_font_override("font", load("res://ui/candy-beans/Candy Beans.otf"))
 	label.add_theme_color_override("font_color", color)
 	label.text = text
 	label.reset_size()
@@ -72,10 +76,13 @@ func _on_wave_start(wave_index: int) -> void:
 	
 func _on_level_complete(passed:bool) -> void:
 	if passed:
+		level_complete.play()
 		pulse_label(Color.GREEN, "Level complete!", Vector2(0, -300), 2)
 	else:
+		level_lose.play()
 		pulse_label(Color.RED, "You failed!", Vector2(0, -300), 2)
 
 
 func _on_level_start(index: int) -> void:
+	level_start.play()
 	pulse_label(Color.WHITE, "Level %d" % (index + 1), Vector2(0, -300), 2)

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Wave" format=3 uid="uid://cxlsv5a2a104f"]
+
+[ext_resource type="Script" uid="uid://ch7m5h5rnpiad" path="res://wave_control/wave.gd" id="1_86bkn"]
+
+[resource]
+script = ExtResource("1_86bkn")
+ingredients = Array[int]([2, 2, 2, 2, 2, 2, 2, 2])
+delay_between = 0.5
+delay_next_wave = 6.0
+metadata/_custom_type_script = "uid://ch7m5h5rnpiad"

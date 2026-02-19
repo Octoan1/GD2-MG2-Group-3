@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Level" format=3 uid="uid://bi1ryyvoby8n2"]
+
+[ext_resource type="Script" uid="uid://cmnp1aqvw5fgm" path="res://wave_control/level.gd" id="1_w4ieh"]
+[ext_resource type="Script" uid="uid://ch7m5h5rnpiad" path="res://wave_control/wave.gd" id="2_4xwk2"]
+[ext_resource type="Resource" uid="uid://demqfy2ojffif" path="res://wave_control/waves/wave_mixed.tres" id="3_gs12q"]
+[ext_resource type="Resource" uid="uid://bq74jobe23ki2" path="res://wave_control/waves/wave_germs.tres" id="4_xubqf"]
+[ext_resource type="Resource" uid="uid://cxlsv5a2a104f" path="res://wave_control/waves/wave_germ_spam.tres" id="5_jkhb0"]
+[ext_resource type="Resource" uid="uid://c6vvi7gustbex" path="res://wave_control/waves/wave_simple.tres" id="6_5txw3"]
+[ext_resource type="Resource" uid="uid://bxhq8qo37igsq" path="res://wave_control/waves/wave_very_long.tres" id="7_4xwk2"]
+[ext_resource type="Resource" uid="uid://cyos6s2pj6u3j" path="res://wave_control/waves/wave_fast.tres" id="8_gs12q"]
+
+[resource]
+script = ExtResource("1_w4ieh")
+waves = Array[ExtResource("2_4xwk2")]([ExtResource("3_gs12q"), ExtResource("4_xubqf"), ExtResource("5_jkhb0"), ExtResource("6_5txw3"), ExtResource("7_4xwk2"), ExtResource("8_gs12q"), ExtResource("5_jkhb0")])
+score = 40
+metadata/_custom_type_script = "uid://cmnp1aqvw5fgm"

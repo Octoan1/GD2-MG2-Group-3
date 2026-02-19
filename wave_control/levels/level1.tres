@@ -1,15 +1,13 @@
-[gd_resource type="Resource" script_class="Level" format=3 uid="uid://c3irfhj0thaye"]
+[gd_resource type="Resource" script_class="Level" format=3 uid="uid://c3vtb2cuuunfb"]
 
 [ext_resource type="Script" uid="uid://cmnp1aqvw5fgm" path="res://wave_control/level.gd" id="1_01rw2"]
 [ext_resource type="Script" uid="uid://ch7m5h5rnpiad" path="res://wave_control/wave.gd" id="2_trx8p"]
 [ext_resource type="Resource" uid="uid://c6vvi7gustbex" path="res://wave_control/waves/wave_simple.tres" id="3_o8vqv"]
-[ext_resource type="Resource" uid="uid://cyos6s2pj6u3j" path="res://wave_control/waves/wave_fast.tres" id="4_t6cgx"]
-[ext_resource type="Resource" uid="uid://bq74jobe23ki2" path="res://wave_control/waves/wave_germs.tres" id="4_yq0cp"]
-[ext_resource type="Resource" uid="uid://g40dg5shwnvs" path="res://wave_control/waves/wave_hard.tres" id="6_2ynpc"]
-[ext_resource type="Resource" uid="uid://demqfy2ojffif" path="res://wave_control/waves/wave_mixed.tres" id="7_3s0bn"]
+[ext_resource type="Resource" uid="uid://dudbe1jcl6qqj" path="res://wave_control/waves/wave_bean.tres" id="4_t6cgx"]
+[ext_resource type="Resource" uid="uid://l1xvnyo7wbw0" path="res://wave_control/waves/wave_water.tres" id="5_82ly6"]
 
 [resource]
 script = ExtResource("1_01rw2")
-waves = Array[ExtResource("2_trx8p")]([ExtResource("3_o8vqv"), ExtResource("3_o8vqv"), ExtResource("4_yq0cp"), ExtResource("3_o8vqv"), ExtResource("4_t6cgx"), ExtResource("6_2ynpc"), ExtResource("4_t6cgx"), ExtResource("7_3s0bn"), ExtResource("3_o8vqv")])
-score = 50
+waves = Array[ExtResource("2_trx8p")]([ExtResource("3_o8vqv"), ExtResource("4_t6cgx"), ExtResource("5_82ly6"), ExtResource("3_o8vqv")])
+score = 20
 metadata/_custom_type_script = "uid://cmnp1aqvw5fgm"

@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://bfdj7se1k83q1"]
 
 [ext_resource type="Script" uid="uid://c1jctmcnvaf0h" path="res://cup_stuff/cup.gd" id="1_ponjl"]
-[ext_resource type="Texture2D" uid="uid://c7xq5qs4vfxlj" path="res://Sprites/cup_colorbg.png" id="2_wx1mw"]
-[ext_resource type="Texture2D" uid="uid://dvqkwsbvfxd5t" path="res://Sprites/cup_outline.png" id="3_5iito"]
+[ext_resource type="Texture2D" uid="uid://c7xq5qs4vfxlj" path="res://sprites/cup_colorbg.png" id="2_wx1mw"]
+[ext_resource type="Texture2D" uid="uid://dvqkwsbvfxd5t" path="res://sprites/cup_outline.png" id="3_5iito"]
+[ext_resource type="AudioStream" uid="uid://bv8cwqpe0j3fc" path="res://cup_stuff/power_ingredient.ogg" id="4_wjsgb"]
 
 [node name="Cup" type="CharacterBody2D" unique_id=1028320870]
 collision_mask = 0
@@ -28,5 +29,9 @@ collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1579941751]
 polygon = PackedVector2Array(-34, -34, 34, -34, 21, 46, -21, 46)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=118323751]
+stream = ExtResource("4_wjsgb")
+max_polyphony = 10
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

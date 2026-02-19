@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvqkwsbvfxd5t"
-path="res://.godot/imported/cup_outline.png-e5eb0600a52236f1c64a55757ee3087b.ctex"
+path="res://.godot/imported/cup_outline.png-febfc5592cdc934d1c43d55313718f85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/cup_outline.png"
-dest_files=["res://.godot/imported/cup_outline.png-e5eb0600a52236f1c64a55757ee3087b.ctex"]
+source_file="res://sprites/cup_outline.png"
+dest_files=["res://.godot/imported/cup_outline.png-febfc5592cdc934d1c43d55313718f85.ctex"]
 
 [params]
 

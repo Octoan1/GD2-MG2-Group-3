@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://7bh2exssc3io"]
+
+[ext_resource type="Script" uid="uid://dg3cwpg0cc31m" path="res://menus/hold_scroller.gd" id="1_pbaj7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wo1j0"]
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 20
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+shadow_color = Color(0, 0, 0, 0.33333334)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47og8"]
+bg_color = Color(1, 0.75, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_top = 10.0
+expand_margin_right = 10.0
+expand_margin_bottom = 10.0
+
+[node name="HSlider" type="HSlider" unique_id=2104961323 node_paths=PackedStringArray("confirm")]
+offset_left = 85.685524
+offset_top = 155.24202
+offset_right = 155.84685
+offset_bottom = 171.24202
+theme_override_constants/grabber_offset = -10000
+theme_override_styles/slider = SubResource("StyleBoxFlat_wo1j0")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_47og8")
+max_value = 1.0
+step = 0.0
+value = 1.0
+editable = false
+script = ExtResource("1_pbaj7")
+confirm = NodePath("")

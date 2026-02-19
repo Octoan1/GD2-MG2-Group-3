@@ -2,6 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b3fojhayo0pn0" path="res://menus/scene_change.gd" id="1_y7k74"]
 [ext_resource type="PackedScene" uid="uid://t1og2mqy37ov" path="res://shader/coffee.tscn" id="2_oyqm6"]
+[ext_resource type="Texture2D" uid="uid://ddco3y6fludgq" path="res://sprites/slab.png" id="3_7kd0g"]
+[ext_resource type="Script" uid="uid://y1q3llqtgola" path="res://menus/confirm_action.gd" id="4_g4ck1"]
+[ext_resource type="FontFile" uid="uid://blbnuv7ey1un5" path="res://ui/candy-beans/Candy Beans.otf" id="4_wo1j0"]
+[ext_resource type="PackedScene" uid="uid://7bh2exssc3io" path="res://ui/h_slider.tscn" id="5_ntdmd"]
+[ext_resource type="FontFile" uid="uid://b3gee00aco7bu" path="res://ui/milkyway-demo/Milkyway DEMO.ttf" id="6_ntdmd"]
+[ext_resource type="AudioStream" uid="uid://ddiy1m17spke6" path="res://audio/coffee.ogg" id="8_47og8"]
 
 [node name="Title" type="Node2D" unique_id=1465934988]
 script = ExtResource("1_y7k74")
@@ -14,11 +20,52 @@ scale = Vector2(21.210938, 21.210938)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1177359359]
 
-[node name="Label" type="Label" parent="." unique_id=1697088772]
-offset_left = -77.0
-offset_top = -11.0
-offset_right = 83.0
-offset_bottom = 12.0
-scale = Vector2(2, 2)
-pivot_offset = Vector2(77, 11)
-text = "Press Space to start"
+[node name="Slab" type="Sprite2D" parent="." unique_id=682605529]
+position = Vector2(-5, 2)
+texture = ExtResource("3_7kd0g")
+
+[node name="Chamption" type="Label" parent="Slab" unique_id=555324682]
+offset_left = -326.0
+offset_top = -85.0
+offset_right = 325.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(0.24313726, 0.16078432, 0.08627451, 1)
+theme_override_fonts/font = ExtResource("4_wo1j0")
+theme_override_font_sizes/font_size = 50
+text = "Hold to start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmAction" type="Node2D" parent="." unique_id=343758337]
+position = Vector2(-612, -766)
+script = ExtResource("4_g4ck1")
+hold_threshold = 1.0
+
+[node name="HSlider" parent="ConfirmAction" unique_id=2104961323 node_paths=PackedStringArray("confirm") instance=ExtResource("5_ntdmd")]
+offset_left = 421.0
+offset_top = 800.0
+offset_right = 794.0
+offset_bottom = 816.0
+confirm = NodePath("..")
+
+[node name="Title" type="Label" parent="." unique_id=697478918]
+offset_left = -517.0
+offset_top = -277.0
+offset_right = 503.0
+offset_bottom = -52.0
+theme_override_colors/font_color = Color(0.99215686, 0.79607844, 0.6, 1)
+theme_override_colors/font_shadow_color = Color(0.23991479, 0.15933807, 0.08395986, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_fonts/font = ExtResource("6_ntdmd")
+theme_override_font_sizes/font_size = 150
+text = "Coffee"
+horizontal_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer2D" parent="." unique_id=1091595912]
+stream = ExtResource("8_47og8")
+volume_db = -5.0
+autoplay = true
+
+[connection signal="on_long_press" from="ConfirmAction" to="." method="go_to_game"]

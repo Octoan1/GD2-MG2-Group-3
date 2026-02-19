@@ -1,7 +1,7 @@
 extends Spawner
 class_name ObjectSpawner
 
-signal remove_all_ingredients
+signal removed_all_ingredients
 
 @export var coffee_bean: PackedScene
 @export var water: PackedScene
@@ -46,7 +46,7 @@ func _input(event: InputEvent) -> void:
 			i = 0
 			j = 0
 			k = 0
-			remove_all_ingredients.emit()
+			removed_all_ingredients.emit()
 		#if event.keycode == KEY_T:
 			#for obj in objects:
 				#print(obj)
@@ -93,3 +93,13 @@ func spawn_object(type: Ingredient.Type, spawn_position: Vector2) -> void:
 	
 	objects.append(instance)
 	object_container.add_child(instance)
+	
+func remove_all_ingredients():
+	for obj in objects:
+		if is_instance_valid(obj):
+			obj.queue_free()
+	objects.clear()
+	i = 0
+	j = 0
+	k = 0
+	removed_all_ingredients.emit()

@@ -5,13 +5,19 @@
 [ext_resource type="AudioStream" uid="uid://bjokudl27nfoi" path="res://popup/next_wave.ogg" id="3_fjuvd"]
 [ext_resource type="AudioStream" uid="uid://cwml1j02s3jrt" path="res://popup/lose.ogg" id="3_sywch"]
 [ext_resource type="AudioStream" uid="uid://6vft8vs5lxgb" path="res://popup/wave_start.ogg" id="4_6flqp"]
+[ext_resource type="AudioStream" uid="uid://btxba3epx7uu4" path="res://popup/next_level.ogg" id="6_76hxk"]
+[ext_resource type="AudioStream" uid="uid://bkjjsya06j7do" path="res://popup/start_play.ogg" id="7_77ewt"]
+[ext_resource type="AudioStream" uid="uid://ptjb6auhibdc" path="res://popup/level_lose.ogg" id="7_fusbb"]
 
-[node name="Popup" type="Node2D" unique_id=314937224 node_paths=PackedStringArray("point", "lose", "next_wave", "wave_start")]
+[node name="Popup" type="Node2D" unique_id=314937224 node_paths=PackedStringArray("point", "lose", "next_wave", "wave_start", "level_complete", "level_start", "level_lose")]
 script = ExtResource("1_imfdp")
 point = NodePath("PointSFX")
 lose = NodePath("LoseSFX")
 next_wave = NodePath("WaveSFX")
 wave_start = NodePath("WaveStartSFX")
+level_complete = NodePath("LevelCompleteSFX")
+level_start = NodePath("LevelStartSFX")
+level_lose = NodePath("LevelLoseSFX")
 point_text = Array[String](["Nice Pour!", "Excellent!", "Well caffeinated!"])
 lose_text = Array[String](["Oof!", "Not good!", "Gross!"])
 
@@ -32,5 +38,20 @@ max_polyphony = 4
 
 [node name="WaveSFX" type="AudioStreamPlayer2D" parent="." unique_id=2033354906]
 stream = ExtResource("3_fjuvd")
+volume_db = 5.0
+max_polyphony = 4
+
+[node name="LevelCompleteSFX" type="AudioStreamPlayer2D" parent="." unique_id=781896424]
+stream = ExtResource("6_76hxk")
+volume_db = 5.0
+max_polyphony = 4
+
+[node name="LevelLoseSFX" type="AudioStreamPlayer2D" parent="." unique_id=413859706]
+stream = ExtResource("7_fusbb")
+volume_db = 5.0
+max_polyphony = 4
+
+[node name="LevelStartSFX" type="AudioStreamPlayer2D" parent="." unique_id=767876634]
+stream = ExtResource("7_77ewt")
 volume_db = 5.0
 max_polyphony = 4

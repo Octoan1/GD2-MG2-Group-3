@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" uid="uid://bl83stjneqpq6" path="res://wave_control/wave_spawner.gd" id="1_vmr0h"]
 [ext_resource type="Script" uid="uid://cmnp1aqvw5fgm" path="res://wave_control/level.gd" id="2_awo6i"]
-[ext_resource type="Resource" uid="uid://c3vtb2cuuunfb" path="res://wave_control/levels/test1.tres" id="3_awo6i"]
-[ext_resource type="Resource" uid="uid://bi1ryyvoby8n2" path="res://wave_control/levels/test2.tres" id="4_qql5r"]
+[ext_resource type="Resource" uid="uid://c3vtb2cuuunfb" path="res://wave_control/levels/level1.tres" id="3_awo6i"]
+[ext_resource type="Resource" uid="uid://bi1ryyvoby8n2" path="res://wave_control/levels/level2.tres" id="4_qql5r"]
 [ext_resource type="Script" uid="uid://dg3cwpg0cc31m" path="res://menus/hold_scroller.gd" id="6_t6v3m"]
 [ext_resource type="Script" uid="uid://y1q3llqtgola" path="res://menus/confirm_action.gd" id="8_qql5r"]
 
-[node name="WaveSpawner" type="Node2D" unique_id=248348919 node_paths=PackedStringArray("object_spawner")]
+[node name="WaveSpawner" type="Node2D" unique_id=248348919]
 script = ExtResource("1_vmr0h")
-object_spawner = NodePath("")
 levels = Array[ExtResource("2_awo6i")]([ExtResource("3_awo6i"), ExtResource("4_qql5r")])
 
 [node name="ConfirmAction" type="Node2D" parent="." unique_id=306427348]

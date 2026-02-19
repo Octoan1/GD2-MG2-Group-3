@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://b3fojhayo0pn0" path="res://menus/scene_change.gd" id="1_n735c"]
 [ext_resource type="PackedScene" uid="uid://t1og2mqy37ov" path="res://shader/coffee.tscn" id="2_egc6y"]
 [ext_resource type="Script" uid="uid://r0ukb1834ep1" path="res://menus/score_label.gd" id="3_1pknx"]
+[ext_resource type="Texture2D" uid="uid://bwwmlgg15ye6j" path="res://sprites/game end.png" id="4_m3e21"]
+[ext_resource type="Script" uid="uid://y1q3llqtgola" path="res://menus/confirm_action.gd" id="5_76ukd"]
+[ext_resource type="FontFile" uid="uid://blbnuv7ey1un5" path="res://ui/candy-beans/Candy Beans.otf" id="5_ta63s"]
+[ext_resource type="PackedScene" uid="uid://7bh2exssc3io" path="res://ui/h_slider.tscn" id="6_c5w7h"]
 
 [node name="End" type="Node2D" unique_id=804685771]
 script = ExtResource("1_n735c")
@@ -15,24 +19,84 @@ scale = Vector2(21.210938, 21.210938)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1453862032]
 
-[node name="Label" type="Label" parent="." unique_id=1524434793]
-offset_left = -178.0
-offset_top = -24.0
-offset_right = 179.0
-offset_bottom = -1.0
+[node name="GameEnd" type="Sprite2D" parent="." unique_id=1221447878]
+position = Vector2(-14, 86)
+texture = ExtResource("4_m3e21")
+
+[node name="Wellplayed" type="Label" parent="GameEnd" unique_id=995117244]
+offset_left = -321.0
+offset_top = -281.0
+offset_right = 330.0
+offset_bottom = -179.0
+theme_override_colors/font_color = Color(0.24313726, 0.16078432, 0.08627451, 1)
+theme_override_fonts/font = ExtResource("5_ta63s")
+theme_override_font_sizes/font_size = 78
+text = "Well Played!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Chamption" type="Label" parent="GameEnd" unique_id=943233064]
+offset_left = -328.0
+offset_top = -152.0
+offset_right = 330.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.24313726, 0.16078432, 0.08627451, 1)
+theme_override_fonts/font = ExtResource("5_ta63s")
+theme_override_font_sizes/font_size = 65
+text = "You are the champion 
+coffee maker!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ConfirmAction" type="Node2D" parent="GameEnd" unique_id=1668712478]
+position = Vector2(-600, -692)
+script = ExtResource("5_76ukd")
+hold_threshold = 1.0
+
+[node name="HSlider" parent="GameEnd/ConfirmAction" unique_id=2104961323 node_paths=PackedStringArray("confirm") instance=ExtResource("6_c5w7h")]
+offset_left = 288.0
+offset_top = 800.0
+offset_right = 894.1245
+offset_bottom = 826.0
+confirm = NodePath("..")
+
+[node name="Score" type="Label" parent="GameEnd" unique_id=1524434793]
+visible = false
+offset_left = -173.0
+offset_top = 44.0
+offset_right = 184.0
+offset_bottom = 67.0
 scale = Vector2(2, 2)
 pivot_offset = Vector2(179, 24)
-text = "You are the champion coffee maker!
-Score 50 / 50"
+text = "Score 50 / 50"
 horizontal_alignment = 1
 script = ExtResource("3_1pknx")
 
-[node name="Space" type="Label" parent="." unique_id=988145654]
-offset_left = -177.0
-offset_top = 161.0
-offset_right = 180.0
-offset_bottom = 184.0
-scale = Vector2(2, 2)
-pivot_offset = Vector2(179, 24)
-text = "Press space to return"
+[node name="Chamption2" type="Label" parent="GameEnd" unique_id=1272941569]
+visible = false
+offset_left = -680.0
+offset_top = -274.0
+offset_right = -29.0
+offset_bottom = -139.0
+theme_override_colors/font_color = Color(0.24313726, 0.16078432, 0.08627451, 1)
+theme_override_fonts/font = ExtResource("5_ta63s")
+theme_override_font_sizes/font_size = 50
+text = "You are the champion 
+coffee maker!"
 horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_1pknx")
+
+[node name="Hold to return" type="Label" parent="." unique_id=966778340]
+offset_left = -335.0
+offset_top = 78.0
+offset_right = 316.0
+offset_bottom = 213.0
+theme_override_colors/font_color = Color(0.24313726, 0.16078432, 0.08627451, 1)
+theme_override_fonts/font = ExtResource("5_ta63s")
+theme_override_font_sizes/font_size = 50
+text = "Hold to return"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="on_long_press" from="GameEnd/ConfirmAction" to="." method="go_to_game"]

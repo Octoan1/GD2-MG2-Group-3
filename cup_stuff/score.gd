@@ -21,4 +21,4 @@ func _on_levels_complete() -> void:
 	end_game()
 
 func set_self_text():
-	self.text = "Score: %d \nCollect %d to win!" % [score_board.player_score, score_board.win_score ]
+	self.text = "%d / %d" % [score_board.player_score, score_board.win_score ]

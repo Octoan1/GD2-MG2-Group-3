@@ -1,4 +1,4 @@
-extends HScrollBar
+extends HSlider
 
 @export var confirm: ConfirmAction
 

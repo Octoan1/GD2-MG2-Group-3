@@ -15,6 +15,7 @@ signal wave_end(wave_end_delay: float, last_wave: bool)
 @export var below_marker: Marker2D
 var spawn_pos: Vector2 # made it originate as Market2D so its more visible in inspector 
 @export var curr_wave_label: Label
+@export var score_label: Node
 
 # level details
 var level_index: int = 0
@@ -37,6 +38,8 @@ func start_level():
 		score_board.win_score = current_level().score
 		score_board.player_score = 0
 		running_level = true
+		curr_wave_label.visible = true
+		score_label.visible = true
 
 # Finish the level before all the waves are to run out
 func finish_level():
@@ -48,7 +51,8 @@ func finish_level():
 	level_complete.emit(passed)
 	
 	running_level = false
-	
+	curr_wave_label.visible = false
+	score_label.visible = false
 	reset_wave_data()
 	
 	if level_index >= levels.size():
@@ -62,12 +66,15 @@ func reset_wave_data():
 	sent_waves_complete = false
 	sent_wave_start = false
 	sent_wave_end = false
+	object_spawner.remove_all_ingredients()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	reset_wave_data()
 	spawn_pos = spawn_pos_marker.global_position
 	waves_complete.connect(finish_level)
+	curr_wave_label.visible = false
+	score_label.visible = false
 	curr_wave_label.text = wave_to_string()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
