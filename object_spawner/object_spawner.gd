@@ -81,13 +81,14 @@ func spawn_object(type: Ingredient.Type, spawn_position: Vector2) -> void:
 	
 	instance.global_position = spawn_position
 	if type == Ingredient.Type.GERM:
-		instance.get_child(0).scale *= 1
-		instance.get_child(1).scale *= 1
+		instance.get_node("SpriteBase").scale *= 1
+		instance.get_node("CollisionShape2D").scale *= 1
+		#instance.get_node("SpriteGolden").scale *= 1
 	else:
-		# col shape
-		instance.get_child(0).scale *= 0.5
-		# sprite
-		instance.get_child(1).scale *= 0.5
+		# not germ
+		instance.get_node("SpriteBase").scale *= 0.5
+		instance.get_node("CollisionShape2D").scale *= 0.5
+		instance.get_node("SpriteGolden").scale *= 0.5
 
 		
 	

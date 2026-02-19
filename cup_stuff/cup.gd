@@ -26,14 +26,13 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		
 		match ingredient.type:
 			Ingredient.Type.COFFEE_BEAN:
-				ingredient.get_node("Sprite2D").texture = load("res://sprites/coffeebean_golden.png")
+				ingredient.get_node("SpriteGolden").show()
 				$AudioStreamPlayer2D.play()
 			Ingredient.Type.WATER:
-				ingredient.get_node("Sprite2D").texture = load("res://sprites/water_golden.png")
+				ingredient.get_node("SpriteGolden").show()
 				$AudioStreamPlayer2D.play()
 			Ingredient.Type.GERM:
 				pass
 				# ingredient.modulate = Color.RED
-
 		ingredient.has_been_in_cup = true
 		

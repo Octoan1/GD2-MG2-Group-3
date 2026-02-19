@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cfdq0pbmbwwb6"
-path="res://.godot/imported/coffeebean_golden.png-7d0a9006746abc9193388b5b181a6d10.ctex"
+uid="uid://k5mw504mjenl"
+path="res://.godot/imported/twocoffeebeans_golden.png-d2e7011bfff5aab7ba9d06e8e5113a3e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/coffeebean_golden.png"
-dest_files=["res://.godot/imported/coffeebean_golden.png-7d0a9006746abc9193388b5b181a6d10.ctex"]
+source_file="res://sprites/twocoffeebeans_golden.png"
+dest_files=["res://.godot/imported/twocoffeebeans_golden.png-d2e7011bfff5aab7ba9d06e8e5113a3e.ctex"]
 
 [params]
 

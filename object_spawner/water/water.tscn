@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dainh2ksg5jno"]
 
 [ext_resource type="Texture2D" uid="uid://dklev1tk3t56n" path="res://Sprites/Untitled 5.png" id="1_b18de"]
-[ext_resource type="Script" uid="uid://cgyayhw3ucp6d" path="res://object_spawner/ingredient_object.gd" id="1_u3seh"]
+[ext_resource type="Script" path="res://object_spawner/ingredient_object.gd" id="1_u3seh"]
+[ext_resource type="Texture2D" uid="uid://decafrmtrffah" path="res://Sprites/water_golden.png" id="3_6nraq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b18de"]
 radius = 62.801273
@@ -12,7 +13,13 @@ collision_mask = 3
 script = ExtResource("1_u3seh")
 type = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1948324836]
+[node name="SpriteGolden" type="Sprite2D" parent="." unique_id=1678900598]
+visible = false
+scale = Vector2(0.21, 0.21)
+texture = ExtResource("3_6nraq")
+offset = Vector2(4.5425863, -385.19006)
+
+[node name="SpriteBase" type="Sprite2D" parent="." unique_id=1948324836]
 scale = Vector2(0.2201389, 0.21288194)
 texture = ExtResource("1_b18de")
 offset = Vector2(4.5425863, -385.19006)
